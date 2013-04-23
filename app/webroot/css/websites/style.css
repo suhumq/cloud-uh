@@ -1,0 +1,789 @@
+/*
+   * HTML5 ? Boilerplate
+   *
+   * What follows is the result of much research on cross-browser styling.
+   * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+   * Kroc Camen, and the H5BP dev community and team.
+   *
+   * Detailed information about this CSS: h5bp.com/css
+*/ 
+
+/* =====================================================================
+  FONT-FACE
+===================================================================== */
+@font-face {
+    font-family: "wf_SegoeUIL";
+    src: url('font/segoeuil.eot');
+    src: url('font/segoeuil.eot?#iefix') format('embedded-opentype'),
+         url('font/segoeuil.woff') format('woff'),
+         url('font/segoeuil.ttf') format('truetype'),
+         url('font/segoeuil.svg#segoeuil') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "wf_SegoeUI";
+    src: url('font/segoeui.eot');
+    src: url('font/segoeui.eot?#iefix') format('embedded-opentype'),
+         url('font/segoeui.woff') format('woff'),
+         url('font/segoeui.ttf') format('truetype'),
+         url('font/segoeui.svg#segoeuil') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* =============================================================================
+  HTML5 element display
+  ========================================================================== */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary{ display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+
+
+
+/* =============================================================================
+    Base
+========================================================================== */
+
+/*
+* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
+
+* 2. Force vertical scrollbar in non-IE
+
+* 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
+
+*/
+
+*{margin:0;padding:0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+:focus { outline: 0; }
+ol, ul { list-style: none; }
+li{line-height: normal;}
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; vertical-align:middle;}
+blockquote:before, blockquote:after,
+q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+h1,h2,h3,h4,h5,h6 { margin:0px 0px 0px 0px; padding:0px; font-weight:normal; }
+a { cursor:pointer; outline:none;color:black; text-decoration:none;}
+a:hover { text-decoration:none; }
+.clear { clear:both; margin:0px; padding:0px; height:0px; line-height:0; font-size:0; }
+.left { float:left;}
+.right { float:right; }
+.center { text-align:center; }
+strong{font-weight:bold;}
+small{font-size:10px; color:white;}
+em,i{font-style: italic;}
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; scroll: none; height: 100%;}
+body{
+	background: white;
+	font-size: 100%;
+	line-height: 1.5;
+	color: #454545;
+	font-family: "wf_SegoeUIL","Tahoma","Verdana","Arial","sans-serif";
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+	border: 1px solid rgb(109, 109, 109);
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus{
+	border: 1px solid #0088cc;
+	-webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+}
+	
+/* =============================================================================
+  HEADER
+========================================================================== */
+header{background: #fff;padding: 0px 0 0px 0;}
+.container{margin: 0 auto;}
+.nav{margin: 30px 0 0 0;}
+.nav-tabs{margin-top: 15px;}
+.nav-tabs > li{margin-right: 5px;}
+.nav-pills > li > a{
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	padding: 12px 15px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.nav-tabs > li > a{
+	padding: 5px 15px;
+}
+.nav-tabs > .active > a, .nav-pills > .active > a:hover{
+	/*background: #eee;*/
+	background: none;
+	border: none;
+	font-size: 16px;
+	color: #454545;
+	font-family: "wf_SegoeUI";
+	font-weight: normal;
+}
+.nav-pills > li > a:hover{
+	background: #eee;}
+
+.nav-tabs > li > a:hover{
+	background: none repeat scroll 0 0 #083047;
+	color: #fff;
+}
+.nav-tabs > .active > a:hover,.nav-pills > .active > a:hover{
+	background: none;
+	border: none;
+}
+.nav-pills .dropdown-menu{
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	background: #eee;
+}
+.dropdown{
+	position: static;
+}
+.nav-pills .open .dropdown-toggle{
+	background: #eee;
+	color: #454545;
+}
+.dropdown-menu{	
+	border: none;
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+	padding: 2% 0 2% 6%;
+}
+.detail-page .dropdown-menu{
+	padding: 2% 0 2% 15%;
+}
+.dropdown-menu > li > a:hover{
+	background: none;
+	text-decoration: underline;
+	color: #454545;
+}
+.tab-pane#tab2{
+	position: absolute;
+	top: 155px;
+	left: 0;
+	z-index: 9999;
+	background: #eee;
+	width: 100%;
+	padding: 20px 0;
+}
+.tab-pane ul,.nav-pills .dropdown-menu{
+	width: 94%;
+	margin: 0 auto;
+}
+.detail-page .nav-pills .dropdown-menu{
+	width: 85%;
+}
+.tab-pane ul li{
+	display: block;
+	margin: 10px;
+}
+.tab-pane ul li a,.dropdown-menu > li > a{
+	font-size: 14px;
+	font-family: "wf_SegoeUI";
+	color: #1570a6;
+}
+.tab-pane ul li a:hover{
+	text-decoration: underline;
+	color: #000;
+}
+.row-fluid{
+	position: relative;
+}
+.logo,.call-us{
+	margin-top: 34px;
+}
+.call-us{
+	display: block;
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+}
+.rights{text-align: right}
+.login{margin: 30px 0 0 0;}
+.box-login{
+	background: #eee;
+	padding: 20px 30px;
+}
+
+.box-login{
+	float: right;
+	font-size: 14px;
+}
+.box-login label{
+	float: left;
+	width: 85px;
+	margin-right: 10px;
+	line-height: 24px;
+}
+.box-login input[type="text"],.box-login input[type="password"]{
+	padding: 2px 1px;
+}
+.btn{
+	background: rgb(167, 21, 39);
+	color: #fff;
+	font-family: "wf_SegoeUIL","Tahoma","Verdana","Arial","sans-serif";
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+	text-shadow: 0 0px 0px rgba(255, 255, 255, 0.75);
+}
+.btn:hover{
+	background: #083047;
+	color: #fff;
+}
+
+.carousel-inner{
+	border-top: 5px solid #eee;
+	border-bottom: 5px solid #eee;
+}
+
+.carousel-control{
+	line-height: 25px;
+}
+
+section{
+	padding-top: 20px;
+}
+
+.content h2{
+	margin-bottom: 10px;
+	margin-right: 20px;
+	font-size: 2.375em;
+	font-family: "wf_SegoeUIL","Tahoma","Verdana","Arial","sans-serif";
+	color: #000;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+}
+
+.list-find{
+	margin-bottom: 10px;
+}
+
+.list-find li{
+	display: block;
+	padding-top: 15px;
+}
+
+.list-find li a{
+	font-size: 20px;
+	color: #0060A6;
+}
+
+.list-find li a:hover{
+	color: #454545;
+	text-decoration: underline;
+}
+
+.project-home{
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	position: relative;
+	bottom: 8px;
+}
+
+.img-collection{
+	margin: 20px 0 0 0;
+}
+
+.img-collection li{
+	display: inline-block;
+	margin-right: 13px;
+	width: 278px;
+}
+
+.img-collection li:last-child{
+	margin-right: 0;
+}
+
+.img-collection li p{
+	font-size: .9em;
+	color: #1570a6;
+	text-align: justify;
+	font-family: "wf_SegoeUI";
+}
+
+.img-collection li a:hover p, .facility ul li a:hover{
+	text-decoration: underline;
+	color: #454545;
+}
+
+.facility{
+	margin-left: 0 !important;
+	margin-top: 20px;
+}
+
+.facility h3{
+	font-size: 24px;
+}
+
+.facility ul{
+	margin-top: 10px;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+}
+
+.facility ul li {
+	line-height: 24px;
+}
+
+.facility ul li a{
+	font-size: 13px;
+	color: #1570a6;
+	font-family: "wf_SegoeUI";
+}
+
+.facility ul li label{
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	width: 90px;
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+}
+
+.news{
+	background: #1570a6;
+	padding: 2.5% 0;
+	margin: 20px 0 0 0;
+	color: #fff;
+	line-height: 30px;
+}
+
+.news h2{
+	color: #fff;
+	font-size: 30px;
+	display: block;
+}
+
+.news .slogan{
+	background-color: rgba(0,0,0,.16);
+	padding: 1.75em;
+}
+
+.news .slogan img{
+	float: left;
+	margin: 0 1.5em 0 0;
+	max-width: 150px;
+}
+
+.slogan h2{
+	line-height: 20px;
+	font-size: 20px;
+}
+
+.slogan p{
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+	padding-top: 10px;
+}
+
+.login-box{
+	width: 880px;
+	margin: 40px auto;
+}
+
+.adv{
+	width: 475px;
+	height: 490px;
+	overflow: hidden;
+}
+
+.adv img{
+	height: 340px;
+	width: 475px;
+	border: none;
+	display: block;
+}
+
+.text-adv{
+	height: 150px;
+	width: 413px;
+	padding: 15px 31px 25px 31px;
+	background: rgb(167, 21, 39);
+	color: #fff;
+}
+
+.text-adv h1{
+	font-family: "wf_SegoeUIL";
+	font-weight: 100;
+	font-size: 31px;
+	line-height: 29px;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+}
+
+.text-adv p{
+	font-family: "wf_SegoeUI";
+	font-weight: 100;
+	font-size: 14px;
+	line-height: 16px;
+	margin: 12px 0px 18px 0px;
+	padding: 0;
+}
+
+.login-form{
+	width: 280px;
+	position: relative;
+	padding: 40px 0 0 100px;
+}
+
+.login-form h1.login-head{
+	font-size: 250%;
+	line-height: 50px;
+	color: #666;
+	margin-bottom: 30px;
+}
+
+.login-box ul li input[type="text"],.login-box ul li input[type="password"]{
+	width: 267px;
+height: 23px;
+margin-top: 3px;
+}
+
+.check{
+	font-family: "wf_SegoeUI";
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	font-size: 13px;
+	color: #1a1a1a;
+	position: relative;
+	top: 3px;
+}
+
+
+.login-box ul li .btn{
+	margin-top: 20px;
+}
+
+.link-login{
+	font-family: "wf_SegoeUI";
+	font-size: 12px;
+	color: #2672EC;
+	display: block;
+	line-height: 24px;
+}
+
+.link-login:hover{
+	text-decoration: underline;
+	color: #454545;
+}
+
+.login-form ul{
+	margin-bottom: 20px;
+}
+
+.footer-login{
+	width: 905px;
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	border-top: 1px solid rgb(167, 167, 167);
+	padding: 10px 20px;
+}
+
+.footer-login ul li{
+	float: left;
+	font-family: "wf_SegoeUI";
+	font-size: 12px;
+	padding: 0 10px;
+}
+
+.detail-page .container{
+	width: 940px;
+}
+
+.detail-page header{
+	border-bottom: 5px solid #eee;
+}
+
+#project-carousel .item img{
+	width: 600px;
+	height: 350px;
+}
+
+#project-carousel .carousel-inner{
+	border: none;
+}
+
+.additional-info{
+	margin: 20px 0;
+}
+
+.additional-info li{
+	margin-right: 19px;
+	width: 197px;
+	display: inline-block;
+	padding: 10px;
+}
+
+.additional-info li:last-child{
+	margin-right: 0;
+}
+
+.additional-info li h2{
+	font-size: 18px;
+	color: #fff;
+	line-height: 24px;
+	margin: 0;
+}
+
+.additional-info li div{
+	float: left;
+	width: 132px;
+	margin-left: 10px;
+}
+
+.additional-info li a{
+	color: #fff;
+	font-size: 13px;
+	display: block;
+	font-family: "wf_SegoeUI";
+}
+
+.additional-info li a:hover{
+	text-decoration: underline;
+}
+
+.map{background: #7cbb00;}
+.site-plan{background: #00A89C;}
+.facility-link{background: #0072C6;}
+.home-type{background: #68217A;}
+
+.map span{background: url(../img/img-websites/map.png) no-repeat 0 0;width: 35px;height: 32px;float: left;margin: 10px;}
+.site-plan span{background: url(../img/site-plan.png) no-repeat 0 0;width: 35px;height: 32px;float: left;margin: 10px;}
+.facility-link span{background: url(../img/facility.png) no-repeat 0 0;width: 35px;height: 32px;float: left;margin: 10px;}
+.home-type span{background: url(../img/home-type.png) no-repeat 0 0;width: 35px;height: 32px;float: left;margin: 10px;}
+
+.desc{
+	margin-left: 40px;
+	width: 300px;
+}
+
+.desc p{
+	font-size: 13px;
+	font-family: "wf_SegoeUI";
+	color: #454545;
+	line-height: 24px;
+	font-weight: bold;
+	text-align: justify;
+}
+
+.desc h3{
+	font-size: 18px;
+	font-family: "wf_SegoeUIL";
+	color: #454545;
+	margin-top: 10px;
+}
+
+.desc ul{
+	list-style-type: disc;
+}
+
+.desc ul li{
+	display: block;
+	font-family: "wf_SegoeUI";
+	font-size: 14px;
+	color: #1a1a1a;
+	list-style-type: disc;
+	line-height: 36px;
+	color: #1570a6;
+}
+
+.detail-page footer .list-kpr{
+	width: 458px;
+	margin: 0;
+}
+#map-location{margin: 10px 0 30px 0;}
+#siteplan,#facilitylink{
+	margin: 30px 0;
+}
+
+.detail-page h2{
+	font-size: 30px;
+	line-height: 48px;
+}
+
+.detail-page .tab-pane ul{
+	width: 940px;
+}
+
+#map-location h2, #siteplan h2, #facilitylink h2{
+	display: block;
+}
+
+#map_canvas {
+border: 2px solid #dadada;
+}
+
+#map-location .desc,#siteplan .desc,#facilitylink .desc{
+	margin: 0;
+	font-family: "wf_SegoeUI";
+	font-size: 14px;
+	width: 400px;
+	font-weight: bold;
+	text-align: right;
+}
+#map-location .desc p, #siteplan .desc p{
+	font-weight: normal;
+	margin-bottom: 20px;
+	font-size: 13px;
+	text-align: justify;
+	margin-bottom: 219px;
+}
+
+#facilitylink h3{font-size: 18px;}
+#facilitylink .facility{margin-top:0;}
+.facility-image {margin-top: 30px;}
+.facility-image li{
+	display: inline-block !important;
+	margin: 10px 10px 0 0;
+}
+
+/*Home Type*/
+.type{
+	margin-top: 20px;
+}
+
+.home-pict-type{
+	width: 530px;
+	height: 440px;
+}
+
+h2.block-style{
+	display: block;
+}
+
+
+#denah .home-pict-type{
+	height: 440px;
+	width: auto;
+}
+
+/*About Us*/
+
+.aboutUs{
+	margin: 20px 0;
+}
+
+ul.contact li{
+	display: block;
+	margin-top: 10px;
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+	line-height: 24px;
+}
+
+.contact img{
+	float: left;
+padding-right: 5px;
+}
+
+.vision p{
+	width: 500px;
+	text-align: justify;
+	font-family: "wf_SegoeUI";
+	font-size: 13px;
+	line-height: 24px;
+}
+
+/*FOOTER*/
+footer{
+	background: #EEEEEE;
+	padding: 20px 0;
+	font-family: "wf_SegoeUI";
+	color: #1a1a1a;
+}
+
+footer h3{
+	font-size: 1em;
+}
+
+.list-kpr{
+	width: 500px;
+	float: left;
+	margin-right: 30px;
+}
+
+.bank{
+	margin-top: 10px;
+}
+
+.bank li{
+	display: inline-block;
+	line-height: 1.7em;
+	margin-bottom: .75em;
+	width: 150px;
+}
+
+.bank img{
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin-bottom: -.45em;
+	margin-right: 10px;
+	height: 26px;
+}
+.footer-content li{
+	display: block;
+	line-height: 1.7em;
+	margin-bottom: .75em;
+	font-size: 13px;
+}
+.footer-content li a:hover{
+	text-decoration: underline;
+}
+
+.footer-content li a{
+	color: #1570a6;
+}
+
+.office{
+	float: right;
+	text-align: right;
+}
+
+.copyright{
+	font-size: 12px;
+	text-align: right;
+	color: #1570a6;
+	display: block;
+	margin-top: 30px;
+}
+
+.menu-footer {
+	margin: 30px 0 0 0;
+}
+
+.menu-footer li{
+	display: inline-block;
+	border-right: 1px solid #1570a6;
+	padding: 0 10px;
+}
+
+.menu-footer li:first-child{
+	padding-left: 0;
+}
+
+.menu-footer li a{
+	color: #1570a6;
+	font-size: 13px;
+}
+
