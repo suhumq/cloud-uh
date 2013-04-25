@@ -173,7 +173,11 @@
 				echo $this->Form->input('bentuk_alis', array('label' => 'Bentuk Alis', 'options' => $sizes, 'default' => 'm'));
 				 ?>
 			</div>
-		</div>	
+		</div>
+				<img alt="Photo Konsumen" src="/uploads/galery-nophoto.jpeg" style="width: 120px; height: 150px"/>
+				<?php 
+					echo $this->Form->input('image_1', array('label' => 'Photo:', 'type' => 'file'));
+				?>			
      </div>
 
 </div>     

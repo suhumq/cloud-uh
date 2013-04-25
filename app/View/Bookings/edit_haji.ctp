@@ -31,6 +31,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <label>Diskon Paket</label>
+                        <div class="input-prepend input-append input-price">
+                        <span class="add-on">$</span>
+                        <?php echo $this->Form->text('room_discount', array('label' => 'Diskon Paket', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+                        <span class="add-on coma">.00</span>
+                        </div>
+                    </div>
+                </div>
 				<div class="row-fluid">
 					<div class="span12">
 						<?php

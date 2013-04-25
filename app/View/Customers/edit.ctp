@@ -1,5 +1,5 @@
 <h3 class="heading">Edit Konsumen</h3>
-<?php echo $this->Form->create('Customer', array('class' => 'form_validation_ttip'));?>
+<?php echo $this->Form->create('Customer', array('class' => 'form_validation_ttip', 'type' => 'file'));?>
 <div class="row-fluid">		
     <div class="span3">
 		<div class="formSep">
@@ -174,7 +174,15 @@
 				echo $this->Form->input('bentuk_alis', array('label' => 'Bentuk Alis', 'options' => $sizes, 'default' => 'm'));
 				 ?>
 			</div>
-		</div>	
+		</div>
+				<?php if ($photo['Customer']['image_1']):?>
+				<img alt="<?php echo $photo['Customer']['image_1']; ?>" src="/uploads/<?php echo $photo['Customer']['image_1'];?>" style="width: 120px; height: 150px"/>
+				<?php else:?>
+				<img alt="<?php echo $photo['Customer']['image_1']; ?>" src="/uploads/galery-nophoto.jpeg" style="width: 120px; height: 150px"/>
+				<?php endif;?>
+				<?php 
+					echo $this->Form->input('image_1', array('label' => 'Photo:', 'type' => 'file'));
+				?>	
      </div>
 
 </div>     

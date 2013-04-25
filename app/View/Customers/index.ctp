@@ -22,7 +22,8 @@
                         <td><?php echo h($customer['Customer']['address']);  ?>&nbsp;</td>
                         <td><?php echo h($customer['Customer']['phone']);  ?>&nbsp;</td>
                         <td>
-                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $customer['Customer']['id'])); ?>&nbsp;&nbsp;&nbsp;
+                            <?php echo $this->Html->link(__('Print'), array('action' => 'print_cust', $customer['Customer']['id'])); ?>&nbsp;&nbsp;&nbsp;
+                             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $customer['Customer']['id'])); ?>&nbsp;&nbsp;&nbsp;
                             <?php echo $this->Form->postLink(__('Hapus'), array('action' => 'delete', $customer['Customer']['id']), null, __('Anda yakin akan menghapus data : %s ?', $customer['Customer']['name'])); ?>
                         </td>
                       

@@ -3,7 +3,7 @@
     
 	html,body {height:100%;}
 
-	table {text-transform:capitalize;}
+	table,span, ul {text-transform:capitalize;}
 	
     /* fix for inputs inline shadow */
 		input[type="text"], input[type="email"], input[type="search"], input[type="password"] {

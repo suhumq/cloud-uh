@@ -46,7 +46,10 @@
                       <?php if ($package['Package']['name'] != "Non Paket"): ?>
                         <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>
                         <td>
-						    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $package['Package']['id'])); ?>&nbsp;&nbsp;&nbsp;
+						    <?php echo $this->Html->link(__('Booklet'), array('controller' => 'Bookings', 'action' => 'booklet', $package['Package']['id'])); ?>&nbsp;&nbsp;&nbsp;
+                            
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $package['Package']['id'])); ?>&nbsp;&nbsp;&nbsp;
+
 						    <?php echo $this->Form->postLink(__('Hapus'), array('action' => 'delete', $package['Package']['id']), null, __('Anda yakin akan menghapus data : %s ?', $package['Package']['name'])); ?>
 						</td>
                         <?php endif; ?>

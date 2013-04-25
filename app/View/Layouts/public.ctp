@@ -22,9 +22,7 @@
                       '../img/splashy/splashy.css',
                       '../lib/colorbox/colorbox.css',
                       '../lib/sticky/sticky.css',
-                      
                       '../media/css/TableTools.css',
-
                       '../lib/datatables/css/jquery.dataTables.css',
                       'style.css'
                    ));
@@ -304,7 +302,11 @@
 <body>
    <div id="maincontainer" class="clearfix">
     <header>
-        <div class="navbar navbar-fixed-top">
+          <?php if ($this->action == 'invoice' || $this->action == 'booklet'): ?>
+          <div class="navbar navbar-fixed-top" style='display:none'>
+          <?php else: ?>
+          <div class="navbar navbar-fixed-top">
+          <?php endif; ?>
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <a class="brand" href="/"><i class="icon-home icon-white"></i> Cloud Umrah Haji</a>

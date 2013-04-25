@@ -66,7 +66,7 @@ class Imageupload extends AppModel {
         if(!$this->validates()) { 
             return false; 
         } 
-        //print_r($this->data);
+        print_r($this->data);
         // Move the file to the uploads folder 
         if(!move_uploaded_file($this->data['Imageupload']['Image']['image']['tmp_name'], WWW_ROOT.DS.'uploads'.DS.$this->data['Imageupload']['Image']['image']['name'])) { 
             return false; 

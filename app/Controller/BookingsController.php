@@ -18,6 +18,14 @@ class BookingsController extends AppController {
         $this->set('booking_umrahs', $this->Booking->find('all'));
     }
 
+     public function booklet($id = null) {
+        $conditions = array('package_id' => array('Booking.package_id' => $id));
+        $this->set('booking_umrahs', $this->Booking->find('all',array(
+            'conditions'=>$conditions,
+            'recursive'=>0
+        )));
+    }
+
     public function add_umrah() {
         $this->set('customers', $this->Customer->find('list'));
 
@@ -43,6 +51,8 @@ class BookingsController extends AppController {
         if ($this->request->is('post')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
             $this->request->data['Booking']['room_amount'] = str_replace(',', '', $price_room);
+            $discount_room = $this->params['data']['Booking']['room_discount'];
+            $this->request->data['Booking']['room_discount'] = str_replace(',', '', $discount_room);
             $this->Booking->create();
             if ($this->Booking->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('Data Umrah telah berhasil disimpan', null), 'default', array('class' => 'alert alert-success'));
@@ -76,6 +86,8 @@ class BookingsController extends AppController {
         if ($this->request->is('post')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
             $this->request->data['Booking']['room_amount'] = str_replace(',', '', $price_room);
+            $discount_room = $this->params['data']['Booking']['room_discount'];
+            $this->request->data['Booking']['room_discount'] = str_replace(',', '', $discount_room);
             $this->Booking->create();
             if ($this->Booking->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('Data Haji telah berhasil disimpan', null), 'default', array('class' => 'alert alert-success'));
@@ -109,6 +121,9 @@ class BookingsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
             $this->request->data['Booking']['room_amount'] = str_replace(',', '', $price_room);
+            $discount_room = $this->params['data']['Booking']['room_discount'];
+            $this->request->data['Booking']['room_discount'] = str_replace(',', '', $discount_room);
+
             if ($this->Booking->save($this->request->data)) {
                 $this->Session->setFlash(__('Data  telah berhasil di-update', null), 'default', array('class' => 'alert alert-success'));
 
@@ -146,6 +161,8 @@ class BookingsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
             $this->request->data['Booking']['room_amount'] = str_replace(',', '', $price_room);
+            $discount_room = $this->params['data']['Booking']['room_discount'];
+            $this->request->data['Booking']['room_discount'] = str_replace(',', '', $discount_room);
             if ($this->Booking->save($this->request->data)) {
                 $this->Session->setFlash(__('Data  telah berhasil di-update', null), 'default', array('class' => 'alert alert-success'));
                 $this->redirect(array('action' => 'index'));
@@ -207,6 +224,19 @@ class BookingsController extends AppController {
         } else {
             $this->request->data = $this->Booking->read(null, $id);
         }
+    }
+
+
+    public function invoice($id = null) {
+        $this->Booking->id = $id;
+        $this->set('booking', $this->Booking->read(null, $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id));
+        $info_umrah = $this->Jurnal->find('all', $_conditions);
+        $this->set('info_umrah', $info_umrah);
+
+        
+        $this->request->data = $this->Booking->read(null, $id);
+        
     }
 
 

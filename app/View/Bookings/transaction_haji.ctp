@@ -51,14 +51,6 @@
                         <?php echo h($booking['Package']['name']); ?>
                      </td>   
                  </tr>
-                <tr>
-                    <th>
-                        Tgl Keberangkatan
-                     </th>
-                     <td>
-                        <?php echo h($booking['Package']['date_going']); ?>
-                     </td>    
-                 </tr> 
                  <tr>
                     <th>
                         Harga Pemesanan
@@ -76,9 +68,17 @@
                             ?>
                      </td>    
                  </tr> 
+                  <tr>
+                    <th>
+                        Diskon Paket
+                     </th>
+                     <td>
+                         <?php echo $this->Number->currency(($booking['Booking']['room_discount']),'$ ');  ?> -> <b> <?php echo $this->Number->currency(($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']),'$ ');  ?> </b>
+                     </td>    
+                 </tr> 
                    <tr>
                     <td>
-                        <a href="#">Lihat Detail</a>
+                          <?php echo $this->Html->link(__('Print Faktur'), array('controller' => 'Bookings', 'action' => 'invoice', $booking['Booking']['id'])); ?>
                      </td>
                       <td>   
                       <?php echo $this->Html->link(__('Lengkapi Formulir'), array('controller' => 'Customers', 'action' => 'edit', $booking['Customer']['id'])); ?>
@@ -99,7 +99,7 @@
                 <?php echo $this->Form->input('cashflow_id', array('label' => '','type' => 'select', 'class' => 'chzn_unit', 'id'=>'umrah_cashflow')); ?>
              <br/>
               <input id="price_brosure" name="price_brosure" class="price_brosure" type="hidden" value=" 
-               <?php echo h($booking['Booking']['room_amount']); ?>
+               <?php echo h($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']); ?>
                 " />
                 <select id="umrah_tipekurs" name="umrah_tipekurs" class='chzn_project'>
                     <option value="1">Rp</option>
@@ -201,7 +201,7 @@
             </tr>
             <tr>
                 <td colspan="2">Sisa Pembayaran</td>
-                <td colspan="4"> <?php echo $this->Number->currency(($booking['Booking']['room_amount'] - ($jumlah2 + $todollar)),'$. '); ?></td>
+                <td colspan="4"> <?php echo $this->Number->currency((($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']) - ($jumlah2 + $todollar)),'$. '); ?></td>
             </tr>
             </tbody>
         </table> 
