@@ -23,9 +23,16 @@
   			$date_going_package = $cond_package['0']['Package']['date_going'];
   			$amount = $this->params['data']['Jurnal']['amount'];
   			$kurs = $this->params['data']['Jurnal']['kurs'];
-  			$this->request->data['Jurnal']['date_going_package'] = $date_going_package;
-			$this->request->data['Jurnal']['amount'] = str_replace(',', '', $amount);
-			$this->request->data['Jurnal']['kurs'] = str_replace(',', '', $kurs);
+
+        if ($date_going_package = ''):
+        $this->request->data['Jurnal']['date_going_package'] = 0;         
+        else:
+        $this->request->data['Jurnal']['date_going_package'] = $date_going_package;  
+        endif;
+
+  			
+			  $this->request->data['Jurnal']['amount'] = str_replace(',', '', $amount);
+			  $this->request->data['Jurnal']['kurs'] = str_replace(',', '', $kurs);
 		    $this->Jurnal->create();
 		    if ($this->Jurnal->save($this->request->data)) {
           $price_amount = $this->params['data']['Jurnal']['amount'];
