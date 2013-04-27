@@ -1,4 +1,4 @@
-<h3 class="heading">Tambah Konsumen</h3>
+<h3 class="heading">Tambah Jama'ah</h3>
 <?php echo $this->Form->create('Customer', array('class' => 'form_validation_ttip'));?>
 <div class="row-fluid">		
     <div class="span3">

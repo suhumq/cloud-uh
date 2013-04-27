@@ -53,7 +53,7 @@
                  </tr>
                  <tr>
                     <th>
-                        Harga Paket
+                        Harga Pemesanan
                      </th>
                       <td> <?php echo $this->Number->currency(($booking['Booking']['room_amount']),'$ ');  ?> 
                            | Kamar : <?php if ($booking['Booking']['room_type'] == '1'):

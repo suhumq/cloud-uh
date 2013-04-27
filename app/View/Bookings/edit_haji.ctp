@@ -5,7 +5,7 @@
 			<div class="formSep">
 				<div class="row-fluid">
 						<div class="span12">
-						<?php echo $this->Form->input('customer_id', array('label' => 'Nama Konsumen','type' => 'select', 'class' => 'chzn_project')); ?>
+						<?php echo $this->Form->input('customer_id', array('label' => 'Nama','type' => 'select', 'class' => 'chzn_project')); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
