@@ -1,8 +1,8 @@
 <div class="row-fluid">
     <div class="span12">
-        <h3 class="heading">Data Konsumen</h3>
+        <h3 class="heading">Data Jama'ah</h3>
          <div align="right">
-      <?php echo $this->Html->link(__('Tambah Konsumen Baru', true), array('controller' => 'Customers', 'action' => 'add'),array('class' => 'btn btn-info'));?>
+      <?php echo $this->Html->link(__("Tambah Jama'ah Baru", true), array('controller' => 'Customers', 'action' => 'add'),array('class' => 'btn btn-info'));?>
     </div>
     <br/>
         <table class="table table-bordered table-striped table_vam" id="dt_customers">

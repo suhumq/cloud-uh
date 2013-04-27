@@ -174,7 +174,7 @@
 				 ?>
 			</div>
 		</div>
-				<img alt="Photo Konsumen" src="/uploads/galery-nophoto.jpeg" style="width: 120px; height: 150px"/>
+				<img alt="Photo" src="/uploads/galery-nophoto.jpeg" style="width: 120px; height: 150px"/>
 				<?php 
 					echo $this->Form->input('image_1', array('label' => 'Photo:', 'type' => 'file'));
 				?>			
@@ -182,6 +182,6 @@
 
 </div>     
 <div class="form-actions">
-	<button class="btn btn-inverse" type="submit">Update Konsumen</button>
+	<button class="btn btn-inverse" type="submit">Update</button>
 	<button class="btn" type="reset">Cancel</button>
 </div>	

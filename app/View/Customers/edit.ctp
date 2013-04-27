@@ -1,4 +1,4 @@
-<h3 class="heading">Edit Konsumen</h3>
+<h3 class="heading">Edit Jama'ah</h3>
 <?php echo $this->Form->create('Customer', array('class' => 'form_validation_ttip', 'type' => 'file'));?>
 <div class="row-fluid">		
     <div class="span3">
@@ -187,6 +187,6 @@
 
 </div>     
 <div class="form-actions">
-	<button class="btn btn-inverse" type="submit">Update Konsumen</button>
+	<button class="btn btn-inverse" type="submit">Update</button>
 	<button class="btn" type="reset">Cancel</button>
 </div>	

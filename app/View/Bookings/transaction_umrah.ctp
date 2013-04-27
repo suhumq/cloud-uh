@@ -1,4 +1,4 @@
-<h3 class="heading">Info Konsumen & Paket Umrah</h3>
+<h3 class="heading">Info Jama'ah & Paket Umrah</h3>
 <div class="row-fluid">
     <div class="span4">
         <table class="table table-bordered table-striped table_vam">

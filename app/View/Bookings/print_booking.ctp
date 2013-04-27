@@ -3,7 +3,7 @@
 <br/>
 <br/>
 <div id="page-wrap">
-<h3 class="heading">Info Konsumen dan Unit yang dipesan</h3>   
+<h3 class="heading">Info Jama'ah dan Unit yang dipesan</h3>   
 <table id="items" border="1">
 	<tr>
 		<th>No.</th>

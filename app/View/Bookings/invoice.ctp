@@ -149,7 +149,7 @@
 <br/>
 <p align="left">Bandung, <?php echo date('d-m-Y H:i:s');?></p>
 
-<span style="padding-right:425px">Konsumen Haji/Umrah</span><span align="right">Bagian Keuangan</span>
+<span style="padding-right:425px">Jama'ah Haji/Umrah</span><span align="right">Bagian Keuangan</span>
 <br/>
 <br/>
 <br/>

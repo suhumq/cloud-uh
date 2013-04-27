@@ -348,7 +348,7 @@
                                      <ul class="dropdown-menu">
                                         <li><?php echo $this->Html->link(__('Data Paket', true), array('controller' => 'Packages', 'action' => 'index'));?></li>
                                         <li><?php echo $this->Html->link(__('Data Maskapai', true), array('controller' => 'Planes', 'action' => 'index'));?></li>
-                                        <li><?php echo $this->Html->link(__('Data Konsumen', true), array('controller' => 'Customers', 'action' => 'index'));?></li>
+                                        <li><?php echo $this->Html->link(__("Data Jama'ah", true), array('controller' => 'Customers', 'action' => 'index'));?></li>
                                         <li><?php echo $this->Html->link(__('Data Group', true), array('controller' => 'GroupBookings', 'action' => 'index'));?></li>
                                     </ul>
                                 </li>

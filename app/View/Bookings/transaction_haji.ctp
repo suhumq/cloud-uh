@@ -1,4 +1,4 @@
-<h3 class="heading">Info Konsumen & Paket Haji</h3>
+<h3 class="heading">Info Jama'ah & Paket Haji</h3>
 <div class="row-fluid">
     <div class="span3">
         <table class="table table-bordered table-striped table_vam">
@@ -53,7 +53,7 @@
                  </tr>
                  <tr>
                     <th>
-                        Harga Pemesanan
+                        Harga Paket
                      </th>
                       <td> <?php echo $this->Number->currency(($booking['Booking']['room_amount']),'$ ');  ?> 
                            | Kamar : <?php if ($booking['Booking']['room_type'] == '1'):
