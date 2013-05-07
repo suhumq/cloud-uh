@@ -21,6 +21,7 @@
                <span class="add-on coma">.00</span>
                 <div class="umrahamount"></div>
             </div>
+             <?php echo $this->Form->text('date_trans', array('label' => '','class' => 'span5 required','placeholder'=>'Tanggal Pembayaran','id'=>'umrah_datetrans')); ?>
              <?php echo $this->Form->text('desc_payment', array('label' => '','class' => 'span12 required','placeholder'=>'Keterangan Pembayaran','id'=>'umrah_descpayment')); ?>
             </div>
         </div>
@@ -37,6 +38,7 @@
             <thead>
                 <tr>
                     <th>Nama Operasional</th>
+                    <th>Kode</th>
                     <th>Cashflow</th>
                     <th>Tanggal</th>
                     <th>Tipe Kurs</th>
@@ -51,8 +53,9 @@
                     foreach ($jurnals as $ju): ?>
                     <tr>
                          <td><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
+                         <td><?php echo h($ju['Cashflow']['code']);  ?>&nbsp;</td>
                          <td><?php echo h($ju['Cashflow']['name']);  ?>&nbsp;</td>
-                         <td><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['created']);?>&nbsp;</td>
+                         <td><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
                          <td><?php  
                          if ($ju['Jurnal']['type_currency'] == '1'):
                             echo 'Rp';

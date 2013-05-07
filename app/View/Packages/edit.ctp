@@ -44,7 +44,7 @@
 		                <label>Quad Room <span class="f_req">*</span></label>
 		                <div class="input-prepend input-append input-price">
 		                <span class="add-on">$</span>
-		                <?php echo $this->Form->text('quad_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+		                <?php echo $this->Form->text('quad_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
 		                <span class="add-on coma">.00</span>
 		                </div>
 		            </div>
@@ -54,7 +54,7 @@
 		                <label>Triple Room <span class="f_req">*</span></label>
 		                <div class="input-prepend input-append input-price">
 		                <span class="add-on">$</span>
-		                <?php echo $this->Form->text('triple_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+		                <?php echo $this->Form->text('triple_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
 		                <span class="add-on coma">.00</span>
 		                </div>
 		            </div>
@@ -64,7 +64,7 @@
 		                <label>Double Room <span class="f_req">*</span></label>
 		                <div class="input-prepend input-append input-price">
 		                <span class="add-on">$</span>
-		                <?php echo $this->Form->text('double_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+		                <?php echo $this->Form->text('double_room', array('label' => '', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
 		                <span class="add-on coma">.00</span>
 		                </div>
 		            </div>

@@ -90,7 +90,7 @@
                                 ?>
               <?php foreach ($info_umrah as $row): ?>
                 <tr>
-                	<td><?php echo $this->Time->format('d M Y  H:i:s',$row['Jurnal']['created']);?>&nbsp;</td>
+                	<td><?php echo $this->Time->format( 'd M Y',$row['Jurnal']['date_trans']);?>&nbsp;</td>
                 	<td><?php 
 
                     if ($row['Jurnal']['type_currency'] == '1'):

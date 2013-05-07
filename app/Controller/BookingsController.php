@@ -271,7 +271,8 @@ class BookingsController extends AppController {
         $data['Booking']['amount'] = $jurnal['umrahAmount'];
         $data['Booking']['desc_payment'] = $jurnal['umrahDescpayment'];
         $data['Booking']['type_trans'] = $jurnal['umrahTypetrans'];
-
+        $data['Booking']['date_trans'] = $jurnal['umrahDatetrans'];
+        
         $this->Jurnal->addDataJurnal($data);
         $msg = array("username" => "Test User", "success" => true);
         $data = ClassRegistry::init('Jurnal')->find('all', array(

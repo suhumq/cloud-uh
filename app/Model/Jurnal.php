@@ -27,6 +27,7 @@ class Jurnal extends AppModel {
         'amount' =>  str_replace(',', '', $data['Booking']['amount']),
         'desc_payment' => $data['Booking']['desc_payment'],
         'type_trans' => $data['Booking']['type_trans'],
+        'date_trans' => $data['Booking']['date_trans'],
         'date_going_package' => $dategoing['0']['Package']['date_going']
          
       )

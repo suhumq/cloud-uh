@@ -109,7 +109,9 @@
               <input id="umrah_typetrans" name="umrah_typetrans" class="umrah_typetrans" type="hidden" value="1" />
               <input id="umrah_dategoing" name="umrah_dategoing" class="umrah_dategoing" type="hidden" value="<?php echo $booking['Package']['date_going'] ?>" />
               
-             <br/><br/><div class="input-prepend input-append input-price">
+             <br/><br/>
+             <input id="umrah_datetrans" name="umrah_datetrans" class="umrah_datetrans required" type="text" placeholder="Tanggal Transaksi" />
+             <div class="input-prepend input-append input-price">
                 <span class="add-on">-</span>
                  <input id="umrah_amount" name="umrah_amount" type="text" class="span12 field-price required currency" minlength='3' placeholder="Amount"/>
                 <span class="add-on coma">.00</span>
@@ -131,6 +133,7 @@
          <table id='tableumrah' class="table table-bordered table-striped table_vam">
             <thead>
                 <tr>
+                    <th>Tanggal</th>
                     <th>Tipe Kurs</th>
                     <th>Kurs</th>
                     <th>Amount</th>
@@ -147,6 +150,7 @@
                                 ?>
               <?php foreach ($info_umrah as $row): ?>
                 <tr>
+                    <td><?php echo $this->Time->format( 'd M Y',$row['Jurnal']['date_trans']);?>&nbsp;</td>
                     <td><?php 
 
                     if ($row['Jurnal']['type_currency'] == '1'):
@@ -170,6 +174,7 @@
                     <a data-toggle="modal" data-backdrop="static" href="#EditUmrah" onClick="editUmrah($(this))" class="label ttip_b" title="Edit Pembayaran Umrah">Edit</a>
                     <a data-toggle="modal" data-backdrop="static" href="#HapusUmrah" onClick="deleteUmrah($(this))" class="label ttip_b" title="Hapus Pembayaran Umrah">Hapus</a>
                     </td>
+                    <input id="umrah_datetrans" name="umrah_datetrans" class="umrah_datetrans required" type="hidden" value="<?php echo h($row['Jurnal']['date_trans']); ?>" />
                     <input id="umrah_tipekurs" name="umrah_tipekurs" value="<?php echo h($row['Jurnal']['type_currency']); ?>" type="hidden" class="umrah_tipekurs" />
                     <input id="umrah_kurs" name="umrah_kurs" value="<?php echo h($row['Jurnal']['kurs']); ?>" type="hidden" class="umrah_kurs" />
                     <input id="umrah_amount" name="umrah_amount" value="<?php echo h($row['Jurnal']['amount']); ?>" type="hidden" class="umrah_amount" />
@@ -193,8 +198,8 @@
                  
             <?php endforeach; ?>
             <tr>
-                <td colspan="2">Jumlah Pembayaran</td>
-                <td colspan="4">
+                <td colspan="3">Jumlah Pembayaran</td>
+                <td colspan="5">
 
                     <?php echo  $this->Number->currency(($jumlah),'Rp. ');  ?> (<?php echo  $this->Number->currency($todollar,'$. ');  ?>) <br/> <?php echo  $this->Number->currency($jumlah2,'$. ');  ?></td>
                 

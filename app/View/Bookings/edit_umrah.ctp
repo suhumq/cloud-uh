@@ -3,6 +3,13 @@
 		<h3 class="heading">Edit Transaksi Umrah</h3>
 		<?php echo $this->Form->create('Booking', array('class' => 'form_validation_ttip'));?>
 		<div class="row-fluid">
+            <div class="span12">
+                <label>Tgl Booking <span class="f_req">*</span></label>
+                <?php
+                echo $this->Form->text('date_booking', array('class' => 'span5 required', 'id'=> 'date_paket')); ?>
+            </div>
+        </div>
+        <div class="row-fluid">
 				<div class="span12">
 				<?php echo $this->Form->input('customer_id', array('label' => 'Nama','type' => 'select', 'class' => 'chzn_project')); ?>
 			</div>
@@ -25,7 +32,7 @@
                 <label>Harga Paket + Kamar</label>
                 <div class="input-prepend input-append input-price">
                 <span class="add-on">$</span>
-                <?php echo $this->Form->text('room_amount', array('label' => 'Harga Paket + Kamar', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+                <?php echo $this->Form->text('room_amount', array('label' => 'Harga Paket + Kamar', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
                 <span class="add-on coma">.00</span>
                 </div>
             </div>
@@ -35,7 +42,7 @@
                 <label>Diskon Paket</label>
                 <div class="input-prepend input-append input-price">
                 <span class="add-on">$</span>
-                <?php echo $this->Form->text('room_discount', array('label' => 'Diskon Paket', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '2')); ?> 
+                <?php echo $this->Form->text('room_discount', array('label' => 'Diskon Paket', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
                 <span class="add-on coma">.00</span>
                 </div>
             </div>

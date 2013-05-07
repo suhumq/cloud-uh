@@ -118,8 +118,14 @@
             var dateText = $(this).data('date');
             $('#date_deadline').datepicker('hide');
          }); 
-
-         
+            $('#umrah_datetrans').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
+            var dateText = $(this).data('date');
+            $('#umrah_datetrans').datepicker('hide');
+         }); 
+            $('#umrah_datetrans2').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
+            var dateText = $(this).data('date');
+            $('#umrah_datetrans2').datepicker('hide');
+         }); 
 
           $(".chzn_project").chosen({
             allow_single_deselect: true

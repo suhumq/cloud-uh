@@ -22,6 +22,7 @@
                <span class="add-on coma">.00</span>
                 <div class="umrahamount"></div>
             </div>
+            <?php echo $this->Form->text('date_trans', array('label' => '','class' => 'span5 required','placeholder'=>'Tanggal Pembayaran','id'=>'umrah_datetrans')); ?>
              <?php echo $this->Form->text('desc_payment', array('label' => '','class' => 'span12 required','placeholder'=>'Keterangan Pembayaran','id'=>'umrah_descpayment')); ?>
             </div>
         </div>

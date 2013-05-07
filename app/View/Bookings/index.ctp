@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>Porsi Haji</th>
+                    <th>Tgl Booking</th>
                     <th>Nama</th>
                     <th>Telepon</th>
                     <th>Paket</th>
@@ -32,6 +33,7 @@
                                 endif;
                             ?>
                         </td>
+                        <td><?php echo $this->Time->format( 'd M Y',$bu['Booking']['date_booking']);?>&nbsp;</td>
                         <td><?php echo h($bu['Customer']['name']);  ?>&nbsp;</td>
                         <td><?php echo h($bu['Customer']['phone']);  ?>&nbsp;</td>
                         <td><?php echo h($bu['Package']['name']);  ?>&nbsp;</td>
