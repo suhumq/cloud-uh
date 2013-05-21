@@ -15,7 +15,7 @@ class BookingsController extends AppController {
     }
 
     public function index() {
-        $this->set('booking_umrahs', $this->Booking->find('all'));
+        $this->set('booking_umrahs', $this->Booking->find('all', array( 'order' => array('date_booking DESC') )));
     }
 
      public function booklet($id = null) {

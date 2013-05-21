@@ -26,7 +26,8 @@
              </div>
         </div>
         <br/>
-        <b> Laba Bersih : <?php echo $this->Number->currency(($neraca_kas),$curr);  ?> </b>
+        <b> Laba Bersih : <?php echo $this->Number->currency(($neraca_kas),$curr);  ?> (<?php echo $this->Number->currency(($neraca_kas/9700), $curr2);  ?>)</b>
+  
         <br/>
         <br/>
         

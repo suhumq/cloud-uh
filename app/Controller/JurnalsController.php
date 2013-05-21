@@ -48,6 +48,8 @@
       
       $curr = 'Rp.';
       $this->set('curr', $curr);
+       $curr2 = '$.';
+      $this->set('curr2', $curr2);
 
       
       $cp = $this->request->is('post');
@@ -57,10 +59,16 @@
       $b_currency = $this->params['data']['Jurnal']['type_currency'];
       if ($b_currency == '1'):
         $curr = 'Rp.';
+        $curr2 = '$';
         $this->set('curr', $curr);
+        $this->set('curr2', $curr2);
+        
       else:
         $curr = '$.';
+        $curr2 = 'Rp.';
         $this->set('curr', $curr);
+        $this->set('curr2', $curr2);
+        
       endif;
 
       $a = $this->params['data']['Jurnal']['package_id']; 

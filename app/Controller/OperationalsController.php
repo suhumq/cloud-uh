@@ -2,22 +2,32 @@
   App::uses('AppController', 'Controller'); 
   class OperationalsController extends AppController {
 
-  	public $uses = array('Package','Jurnal','Cashflow');
+  	public $uses = array('Package','Jurnal','Cashflow', 'Backcashflow');
   	
   	public function index() {   
-  		$conditions = array('type_trans' => array('Jurnal.type_trans' => 2));
+  		$conditions = array('type_trans' => array('Jurnal.type_trans' => 2) );
         $this->set('jurnals', $this->Jurnal->find('all',array(
             'conditions'=>$conditions,
+            'order'=>('Jurnal.date_trans DESC'),
             'recursive'=>0
         )));
+       
 
-        $cond_cashflow = array('flag' => array('Cashflow.flag' => 0));
-        $this->set('cashflows', $this->Cashflow->find('list',array(
-            'conditions'=>$cond_cashflow,
-            'recursive'=>0
-        )));
-
+        // $cond_cashflow = array('flag' => array('Cashflow.flag' => 0));
+        // $this->set('cashflows', $this->Cashflow->find('list',array(
+        //     'conditions'=>$cond_cashflow,
+        //     'recursive'=>0
+        // )));
+        // $cond_cashflow2 = array('flag' => array('Cashflow.flag' => 1));
+        // $this->set('cashflowss', $this->Cashflow->find('list',array(
+        //     'conditions'=>$cond_cashflow2,
+        //     'recursive'=>0
+        // )));
+        
+        $this->set('cashflows', $this->Cashflow->find('list'));
+        $this->set('backcashflows', $this->Backcashflow->find('list'));
         $this->set('packages', $this->Package->find('list'));
+
   		if ($this->request->is('post')) {
   			$cond_package = $this->Package->find('all', array('conditions' => array('Package.id' => ($this->params['data']['Jurnal']['package_id']))));
   			$date_going_package = $cond_package['0']['Package']['date_going'];
@@ -55,11 +65,9 @@
 	public function edit($id = null) {
         $this->set('packages', $this->Package->find('list'));
   	   
-       $cond_cashflow = array('flag' => array('Cashflow.flag' => 0));
-        $this->set('cashflows', $this->Cashflow->find('list',array(
-            'conditions'=>$cond_cashflow,
-            'recursive'=>0
-        )));
+        $this->set('cashflows', $this->Cashflow->find('list'));
+        $this->set('backcashflows', $this->Backcashflow->find('list'));
+        
 
         $this->Jurnal->id = $id;
         $this->Jurnal->recursive = 1;

@@ -2,19 +2,20 @@
   App::uses('AppController', 'Controller'); 
   class DepositsController extends AppController {
 
-  	public $uses = array('Package','Jurnal','Cashflow');
+  	public $uses = array('Package','Jurnal','Cashflow','Backcashflow');
   	
   	public function index() {   
   		$conditions = array('type_trans' => array('Jurnal.type_trans' => 3));
-        $this->set('jurnals', $this->Jurnal->find('all',array(
+         $this->set('jurnals', $this->Jurnal->find('all',array(
             'conditions'=>$conditions,
+            'order'=>'date_trans DESC',
             'recursive'=>0
         )));
-        $cond_cashflow = array('flag' => array('Cashflow.flag' => 1));
-        $this->set('cashflows', $this->Cashflow->find('list',array(
-            'conditions'=>$cond_cashflow,
-            'recursive'=>0
-        )));
+
+
+        $this->set('cashflows', $this->Cashflow->find('list'));
+        $this->set('backcashflows', $this->Backcashflow->find('list'));
+        
 
   		if ($this->request->is('post')) {
   			$date_going_package = 0;
@@ -37,14 +38,11 @@
 		}
   	}
 
-
 	public function edit($id = null) {
 
-        $cond_cashflow = array('flag' => array('Cashflow.flag' => 1));
-        $this->set('cashflows', $this->Cashflow->find('list',array(
-            'conditions'=>$cond_cashflow,
-            'recursive'=>0
-        )));
+        $this->set('cashflows', $this->Cashflow->find('list'));
+        $this->set('backcashflows', $this->Backcashflow->find('list'));
+        
 
         $this->Jurnal->id = $id;
         $this->Jurnal->recursive = 1;

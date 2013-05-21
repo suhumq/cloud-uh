@@ -15,7 +15,7 @@
             	<?php
 					foreach ($jurnals as $jurnal): ?>
 					<tr>
-                        <td><?php echo $this->Time->format('d M Y',$jurnal['Jurnal']['created']);?>&nbsp;</td>
+                        <td><?php echo $this->Time->format('d M Y',$jurnal['Jurnal']['date_trans']);?>&nbsp;</td>
 						<td><?php echo h($jurnal['Jurnal']['desc_payment']);  ?>&nbsp;</td>
                         <td><?php echo h($jurnal['Cashflow']['name']);  ?>&nbsp;<br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -23,7 +23,7 @@
                             if ($jurnal['Jurnal']['type_trans'] == '1'):
                                 echo "Pendapatan Paket";
                             elseif ($jurnal['Jurnal']['type_trans'] == '2'):
-                                 echo "Kas/Bank";
+                                 echo h($jurnal['Backcashflow']['name']); 
                             else:
                                  echo "Pendapatan Non Paket";
                             endif; 
@@ -67,7 +67,7 @@
                             if ($jurnal['Jurnal']['type_trans'] == '1'):
                                 echo "Pendapatan Paket";
                             elseif ($jurnal['Jurnal']['type_trans'] == '2'):
-                                 echo "Kas/Bank";
+                                echo h($jurnal['Backcashflow']['name']); 
                             else:
                                  echo "Pendapatan Non Paket";
                             endif; 
