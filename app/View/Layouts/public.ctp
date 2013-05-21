@@ -5,8 +5,8 @@
     <?php
         echo $this->Html->meta('icon');
         echo $this->Html->css(array(
-                      '../bootstrap/css/bootstrap.css', 
-                      '../bootstrap/css/bootstrap.min.css', 
+                      '../bootstrap/css/bootstrap.css',
+                      '../bootstrap/css/bootstrap.min.css',
                       '../bootstrap/css/bootstrap-responsive.min.css',
                       '../lib/jquery-ui/css/Aristo/Aristo.css',
                       'tamarillo.css',
@@ -28,7 +28,7 @@
                    ));
 
         echo $this->Html->script(array(
-                      'jquery.min.js', 
+                      'jquery.min.js',
                       'jquery.debouncedresize.min.js',
                       'jquery.actual.min.js',
                       'jquery.cookie.min.js',
@@ -37,14 +37,14 @@
                       '../lib/jBreadcrumbs/js/jquery.jBreadCrumb.1.1.min.js',
                       'ios-orientationchange-fix.js',
                       '../lib/datepicker/bootstrap-datepicker.min.js',
-                      
+
                       '../lib/antiscroll/antiscroll.js',
                       '../lib/antiscroll/jquery-mousewheel.js',
                       '../lib/colorbox/jquery.colorbox.min.js',
                       '../lib/datatables/jquery.dataTables.min.js',
                       '../media/js/ZeroClipboard.js',
                       '../media/js/TableTools.min.js',
-                      
+
                       '../lib/uniform/jquery.uniform.min.js',
                       '../lib/chosen/chosen.jquery.min.js',
                       '../lib/datatables/jquery.dataTables.sorting.js',
@@ -89,43 +89,43 @@
          $('#project_date_start').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#project_date_start').datepicker('hide');
-         }); 
+         });
          $('#project_date_end').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#project_date_end').datepicker('hide');
-         }); 
+         });
          $('#birthday').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#birthday').datepicker('hide');
-         }); 
+         });
          $('#date_deadline').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#date_deadline').datepicker('hide');
-         }); 
+         });
           $('#date_paket').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#trans_date').datepicker('hide');
-         }); 
+         });
           $('#date_trans2').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#date_trans2').datepicker('hide');
-         }); 
+         });
           $('#date_neraca_1').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#date_deadline').datepicker('hide');
-         }); 
+         });
            $('#date_neraca_2').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#date_deadline').datepicker('hide');
-         }); 
+         });
             $('#umrah_datetrans').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#umrah_datetrans').datepicker('hide');
-         }); 
+         });
             $('#umrah_datetrans2').datepicker({format: "yyyy-mm-dd"}).on('changeDate', function(ev){
             var dateText = $(this).data('date');
             $('#umrah_datetrans2').datepicker('hide');
-         }); 
+         });
 
           $(".chzn_project").chosen({
             allow_single_deselect: true
@@ -150,10 +150,10 @@
           });
 
 
-         
+
           // $("#dp1").inputmask("9999-99-99",{placeholder:"yyyy-mm-dd"});
            $("#infohotel").inputmask("9-9");
-          
+
             $('#dt_monitorings').dataTable( {
               "sDom": 'T<"clear">lfrtip',
               "oTableTools": {
@@ -290,7 +290,7 @@
                 ]
               }
             } );
-            
+
               $('#dt_units_list').dataTable( {
         // "bPaginate": false,
         "bLengthChange": false,
@@ -299,8 +299,8 @@
         "bInfo": false,
         "bAutoWidth": false
     } );
-           
-            
+
+
         });
     </script>
 
@@ -330,7 +330,7 @@
                             <!-- <li><a href="#">My Profile</a></li> -->
                               <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>
                               <li>
-                              <?php echo $this->Html->link(__('Management User', true), array('controller' => 'users', 'action' => 'index'), array('style' => '')); ?> 
+                              <?php echo $this->Html->link(__('Management User', true), array('controller' => 'users', 'action' => 'index'), array('style' => '')); ?>
                               </li>
                               <li class="divider"></li>
                               <?php endif;?>
@@ -356,10 +356,12 @@
                                         <li><?php echo $this->Html->link(__('Data Maskapai', true), array('controller' => 'Planes', 'action' => 'index'));?></li>
                                         <li><?php echo $this->Html->link(__("Data Jama'ah", true), array('controller' => 'Customers', 'action' => 'index'));?></li>
                                         <li><?php echo $this->Html->link(__('Data Group', true), array('controller' => 'GroupBookings', 'action' => 'index'));?></li>
+                                        <li><?php echo $this->Html->link(__('Data Akun Debet', true), array('controller' => 'Cashflows', 'action' => 'index'));?></li>
+                                         <li><?php echo $this->Html->link(__('Data Akun Kredit', true), array('controller' => 'Backcashflows', 'action' => 'index'));?></li>
                                     </ul>
                                 </li>
                                 <?php endif; ?>
-                               
+
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-download icon-white"></i>Transaksi <b class="caret"></b></a>
                                    <ul class="dropdown-menu">
@@ -374,7 +376,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>                   
+                                <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-print icon-white"></i> Laporan <b class="caret"></b></a>
                                    <ul class="dropdown-menu">
@@ -512,7 +514,7 @@
                     </div>
                 </nav> -->
                      <p> <?php echo $this->Session->flash(); ?> </p>
-                
+
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>
