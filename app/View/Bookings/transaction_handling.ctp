@@ -1,6 +1,6 @@
-<h3 class="heading">Info Jama'ah & Paket Haji</h3>
+<h3 class="heading">Info Jama'ah & Paket Umrah</h3>
 <div class="row-fluid">
-    <div class="span3">
+    <div class="span4">
         <table class="table table-bordered table-striped table_vam">
             <thead>
                 <tr>
@@ -40,49 +40,23 @@
             </tbody>
         </table>
     </div>
-    <div class="span3">
+    <div class="span4">
         <table class="table table-bordered table-striped table_vam">
             <thead>
                 <tr>
                     <th>
-                        Paket Haji
+                        Paket Umrah
                      </th>
                      <td>
                         <?php echo h($booking['Package']['name']); ?>
                      </td>
                  </tr>
-                 <tr>
-                    <th>
-                        Harga Paket
-                     </th>
-                      <td> <?php echo $this->Number->currency(($booking['Booking']['room_amount']),'$ ');  ?>
-                           | Kamar : <?php if ($booking['Booking']['room_type'] == '1'):
-                                echo "Quad";
-                                else:
-                                    if ($booking['Booking']['room_type'] == '2'):
-                                        echo "Triple";
-                                    else:
-                                        echo "Double";
-                                    endif;
-                                endif;
-                            ?>
-                     </td>
-                 </tr>
-                  <tr>
-                    <th>
-                        Diskon Paket
-                     </th>
-                     <td>
-                         <?php echo $this->Number->currency(($booking['Booking']['room_discount']),'$ ');  ?> -> <b> <?php echo $this->Number->currency(($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']),'$ ');  ?> </b>
-                     </td>
-                 </tr>
+
                    <tr>
-                    <td>
-                          <?php echo $this->Html->link(__('Print Faktur'), array('controller' => 'Bookings', 'action' => 'invoice', $booking['Booking']['id'])); ?>
+                    <td colspan="2">
+                          <?php echo $this->Html->link(__('Print Faktur Handling'), array('controller' => 'Bookings', 'action' => 'invoiceHandling', $booking['Booking']['id'])); ?>
                      </td>
-                      <td>
-                      <?php echo $this->Html->link(__('Lengkapi Formulir'), array('controller' => 'Customers', 'action' => 'edit', $booking['Customer']['id'])); ?>
-                     </td>
+
                  </tr>
             </thead>
             <tbody>
@@ -91,27 +65,29 @@
     </div>
 </div>
 
-<h3 class="heading">Transaksi Pembayaran Paket Haji</h3>
+<h3 class="heading">Transaksi Pembayaran Handling</h3>
 <div class="row-fluid">
     <div class="span4">
         <div class="row-fluid">
             <div class="span12">
                 <?php echo $this->Form->input('cashflow_id', array('label' => '','type' => 'select', 'class' => 'chzn_unit', 'id'=>'umrah_cashflow')); ?>
              <br/>
-              <input id="price_brosure" name="price_brosure" class="price_brosure" type="hidden" value="
-               <?php echo h($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']); ?>
-                " />
                 <select id="umrah_tipekurs" name="umrah_tipekurs" class='chzn_project'>
                     <option value="1">Rp</option>
                     <option value="2">$</option>
                 </select>
+
+              <input id="price_brosure" name="price_brosure" class="price_brosure" type="hidden" value="
+               <?php echo h($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']); ?>
+                " />
+
               <input id="id_trans" name="id_trans" class="id_trans" type="hidden" value="<?php echo $this->data['Booking']['id'] ?>" />
-              <input id="umrah_typetrans" name="umrah_typetrans" class="umrah_typetrans" type="hidden" value="1" />
+              <input id="umrah_typetrans" name="umrah_typetrans" class="umrah_typetrans" type="hidden" value="4" />
               <input id="umrah_dategoing" name="umrah_dategoing" class="umrah_dategoing" type="hidden" value="<?php echo $booking['Package']['date_going'] ?>" />
 
-             <br/><br/>
-             <input id="umrah_datetrans" name="umrah_datetrans" class="umrah_datetrans required" type="text" placeholder="Tanggal Transaksi" />
-             <div class="input-prepend input-append input-price">
+              <br/><br/>
+              <input id="umrah_datetrans" name="umrah_datetrans" class="umrah_datetrans required" type="text" placeholder="Tanggal Transaksi" />
+              <div class="input-prepend input-append input-price">
                 <span class="add-on">-</span>
                  <input id="umrah_amount" name="umrah_amount" type="text" class="span12 field-price required currency" minlength='3' placeholder="Amount"/>
                 <span class="add-on coma">.00</span>
@@ -130,7 +106,7 @@
         </div>
     </div>
     <div class="span8">
-         <table id='tableumrah' class="table table-bordered table-striped table_vam">
+        <table id='tableumrah' class="table table-bordered table-striped table_vam">
             <thead>
                 <tr>
                     <th>Tanggal</th>
@@ -140,7 +116,6 @@
                     <th>Cashflow</th>
                     <th>Keterangan</th>
                     <th>Aksi</th>
-
                  </tr>
             </thead>
             <tbody>
@@ -152,7 +127,6 @@
                 <tr>
                     <td><?php echo $this->Time->format( 'd M Y',$row['Jurnal']['date_trans']);?>&nbsp;</td>
                     <td><?php
-
                     if ($row['Jurnal']['type_currency'] == '1'):
                             echo "Rp";
                         else:
@@ -188,9 +162,10 @@
 
                     if ($row['Jurnal']['type_currency'] == '1'):
                              $jumlah += ($row['Jurnal']['amount']);
-                            if($row['Jurnal']['kurs']!=0):
+                         if($row['Jurnal']['kurs']!=0):
                              $todollar += ($row['Jurnal']['amount'] / $row['Jurnal']['kurs'] );
-                            endif;
+                         endif;
+
                         else:
                              $jumlah2 += ($row['Jurnal']['amount']);
                         endif;
@@ -206,10 +181,7 @@
                     <?php echo  $this->Number->currency(($jumlah),'Rp. ');  ?> (<?php echo  $this->Number->currency($todollar,'$. ');  ?>) <br/> <?php echo  $this->Number->currency($jumlah2,'$. ');  ?></td>
 
             </tr>
-            <tr>
-                <td colspan="2">Sisa Pembayaran</td>
-                <td colspan="5"> <?php echo $this->Number->currency((($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']) - ($jumlah2 + $todollar)),'$. '); ?></td>
-            </tr>
+
             </tbody>
         </table>
     </div>
@@ -218,7 +190,7 @@
  <div class="modal hide fade" id="EditUmrah">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">×</button>
-                <h3>Edit Pembayaran Haji</h3>
+                <h3>Edit Pembayaran Handling</h3>
             </div>
             <div class="modal-body">
                 <div class="editable_umrah"></div>
@@ -228,15 +200,20 @@
          <div class="modal hide fade" id="HapusUmrah">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">×</button>
-                <h3>Hapus Pembayaran Haji</h3>
+                <h3>Hapus Pembayaran Handling</h3>
             </div>
             <div class="modal-body">
                  <div class="deletable_umrah"></div>
             </div>
         </div>
+<br/>
+<br/>
+
+</div>
+
 
  <?php
-    echo $this->Html->script('specific_page/bookings/form_umrah');
+    echo $this->Html->script('specific_page/bookings/form_handling');
 ?>
 
  <script type="text/javascript">
@@ -249,3 +226,4 @@
             }, "") + "." + p[1];
         }
 </script>
+

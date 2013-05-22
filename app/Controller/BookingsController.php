@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeTime', 'Utility');
 
 class BookingsController extends AppController {
     // var $helpers = array('Javascript');
@@ -15,7 +16,7 @@ class BookingsController extends AppController {
     }
 
     public function index() {
-        $this->set('booking_umrahs', $this->Booking->find('all', array( 'order' => array('date_booking DESC') )));
+        $this->set('booking_umrahs', $this->Booking->find('all', array( 'order' => array('date_booking asc') )));
     }
 
      public function booklet($id = null) {
@@ -28,24 +29,25 @@ class BookingsController extends AppController {
 
     public function add_umrah() {
         $this->set('customers', $this->Customer->find('list'));
-
         $this->set('groupbookings', $this->GroupBooking->find('list'));
-          
-      
+
+
         $conditions = array('package_type' => array('Package.package_type' => 1));
         $this->set('packages', $this->Package->find('list',array(
             'conditions'=>$conditions,
             'recursive'=>0
         )));
-        
+
         $requires = $this->Requirement->query("SELECT * FROM requirements WHERE req_type = 1;");
-        $this->set('requires', $requires);    
+        $this->set('requires', $requires);
 
         $equips = $this->Equipment->query("SELECT * FROM equipment WHERE equ_type = 1;");
-        $this->set('equips', $equips);    
+        $this->set('equips', $equips);
+        $time_now = time();
 
         $nomor_opr = $this->Booking->query("SELECT MAX(id) FROM bookings;");
         $invoice = $nomor_opr;
+
         $this->set('invoice', $invoice);
 
         if ($this->request->is('post')) {
@@ -74,11 +76,11 @@ class BookingsController extends AppController {
             'conditions'=>$conditions,
             'recursive'=>0
         )));
-        
+
         $requires = $this->Requirement->query("SELECT * FROM requirements WHERE req_type = 1;");
         $this->set('requires', $requires);
         $equips = $this->Equipment->query("SELECT * FROM equipment WHERE equ_type = 1;");
-        $this->set('equips', $equips); 
+        $this->set('equips', $equips);
 
         $nomor_opr = $this->Booking->query("SELECT MAX(id) FROM bookings;");
         $invoice = $nomor_opr;
@@ -104,7 +106,7 @@ class BookingsController extends AppController {
         if (!$this->Booking->exists()) {
             throw new NotFoundException(__('Invalid booking'));
         }
-        
+
         $this->set('customers', $this->Customer->find('list'));
         $conditions = array('package_type' => array('Package.package_type' => 2));
         $this->set('packages', $this->Package->find('list',array(
@@ -116,7 +118,7 @@ class BookingsController extends AppController {
         $requires = $this->Requirement->query("SELECT * FROM requirements WHERE req_type = 1;");
         $this->set('requires', $requires);
         $equips = $this->Equipment->query("SELECT * FROM equipment WHERE equ_type = 1;");
-        $this->set('equips', $equips); 
+        $this->set('equips', $equips);
 
         if ($this->request->is('post') || $this->request->is('put')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
@@ -156,8 +158,8 @@ class BookingsController extends AppController {
         $requires = $this->Requirement->query("SELECT * FROM requirements WHERE req_type = 1;");
         $this->set('requires', $requires);
         $equips = $this->Equipment->query("SELECT * FROM equipment WHERE equ_type = 1;");
-        $this->set('equips', $equips); 
-        
+        $this->set('equips', $equips);
+
         if ($this->request->is('post') || $this->request->is('put')) {
             $price_room = $this->params['data']['Booking']['room_amount'];
             $this->request->data['Booking']['room_amount'] = str_replace(',', '', $price_room);
@@ -177,8 +179,26 @@ class BookingsController extends AppController {
 
     public function transaction_umrah($id = null) {
         $this->Booking->id = $id;
+        $this->Booking->recursive = 1;
+        if (!$this->Booking->exists()) {
+            throw new NotFoundException(__('Invalid booking'));
+        }
+
+        $this->set('customers', $this->Customer->find('list'));
+        $conditions = array('package_type' => array('Package.package_type' => 1));
+        $this->set('packages', $this->Package->find('list',array(
+            'conditions'=>$conditions,
+            'recursive'=>0
+        )));
+
+        $this->set('groupbookings', $this->GroupBooking->find('list'));
+        $requires = $this->Requirement->query("SELECT * FROM requirements WHERE req_type = 1;");
+        $this->set('requires', $requires);
+        $equips = $this->Equipment->query("SELECT * FROM equipment WHERE equ_type = 1;");
+        $this->set('equips', $equips);
+
         $this->set('booking', $this->Booking->read(null, $id));
-        $_conditions = array('conditions' => array('Booking.id' => $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id, 'Jurnal.type_trans' => 1));
         $info_umrah = $this->Jurnal->find('all', $_conditions);
         $this->set('info_umrah', $info_umrah);
 
@@ -187,7 +207,53 @@ class BookingsController extends AppController {
             'conditions'=>$cond_cashflow,
             'recursive'=>0
         )));
-       
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Booking->save($this->request->data)) {
+                $this->Session->setFlash(__('Data  telah berhasil di-update', null), 'default', array('class' => 'alert alert-success'));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('Data gagal di-update', null), 'default', array('class' => 'alert alert-error'));
+            }
+        } else {
+             $this->request->data = $this->Booking->read(null, $id);
+            $this->data = $this->Booking->read(null, $id);
+            $this->set('data', $this->data);
+        }
+
+        // if ($this->request->is('post') || $this->request->is('put')) {
+        //     if ($this->Booking->saveAll($this->request->data)) {
+        //         $this->Session->setFlash(__('Data Transaksi Booking telah berhasil ditambahkan', null), 'default', array('class' => 'alert alert-success'));
+        //         $this->redirect(array('action' => 'index'));
+        //     } else {
+        //         $this->Session->setFlash(__('Data Transaksi Booking gagal ditambahkan', null), 'default', array('class' => 'alert alert-error'));
+        //     }
+        // } else {
+        //     $this->request->data = $this->Booking->read(null, $id);
+        // }
+    }
+
+
+    public function transaction_handling($id = null) {
+        $this->Booking->id = $id;
+        $this->Booking->recursive = 1;
+        if (!$this->Booking->exists()) {
+            throw new NotFoundException(__('Invalid booking'));
+        }
+
+
+        $this->set('booking', $this->Booking->read(null, $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id, 'Jurnal.type_trans' => 4));
+        $info_umrah = $this->Jurnal->find('all', $_conditions);
+        $this->set('info_umrah', $info_umrah);
+
+        $cond_cashflow = array('flag' => array('Cashflow.flag' => 1));
+        $this->set('cashflows', $this->Cashflow->find('list',array(
+            'conditions'=>$cond_cashflow,
+            'recursive'=>0
+        )));
+
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Booking->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('Data Transaksi Booking telah berhasil ditambahkan', null), 'default', array('class' => 'alert alert-success'));
@@ -204,7 +270,7 @@ class BookingsController extends AppController {
     public function transaction_haji($id = null) {
         $this->Booking->id = $id;
         $this->set('booking', $this->Booking->read(null, $id));
-        $_conditions = array('conditions' => array('Booking.id' => $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id, 'Jurnal.type_trans' => 1));
         $info_umrah = $this->Jurnal->find('all', $_conditions);
         $this->set('info_umrah', $info_umrah);
 
@@ -213,7 +279,7 @@ class BookingsController extends AppController {
             'conditions'=>$cond_cashflow,
             'recursive'=>0
         )));
-       
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Booking->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('Data Transaksi Booking telah berhasil ditambahkan', null), 'default', array('class' => 'alert alert-success'));
@@ -230,15 +296,20 @@ class BookingsController extends AppController {
     public function invoice($id = null) {
         $this->Booking->id = $id;
         $this->set('booking', $this->Booking->read(null, $id));
-        $_conditions = array('conditions' => array('Booking.id' => $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id, 'Jurnal.type_trans' => 1));
         $info_umrah = $this->Jurnal->find('all', $_conditions);
         $this->set('info_umrah', $info_umrah);
-
-        
         $this->request->data = $this->Booking->read(null, $id);
-        
     }
 
+    public function invoiceHandling($id = null) {
+        $this->Booking->id = $id;
+        $this->set('booking', $this->Booking->read(null, $id));
+        $_conditions = array('conditions' => array('Booking.id' => $id, 'Jurnal.type_trans' => 4));
+        $info_umrah = $this->Jurnal->find('all', $_conditions);
+        $this->set('info_umrah', $info_umrah);
+        $this->request->data = $this->Booking->read(null, $id);
+    }
 
     public function deleteJurnal() {
         $jurnal = $_GET;
@@ -254,8 +325,22 @@ class BookingsController extends AppController {
         die();
     }
 
+    public function deleteJurnalHandling() {
+        $jurnal = $_GET;
+        $id = $jurnal['id_jurnal'];
+        $data['Booking']['id'] = $jurnal['id_trans'];
+        $this->Jurnal->removeData($id);
+        $data = ClassRegistry::init('Jurnal')->find('all', array(
+            'conditions' => array('Jurnal.booking_id' => $data['Booking']['id'], 'Jurnal.type_trans' => 4),
+            'recursive' => -1)
+        );
 
-    
+        echo json_encode($data);
+        die();
+    }
+
+
+
     public function addJurnal($id = null) {
         $jurnal = $_GET;
         if (isset($jurnal['id_jurnal'])) {
@@ -263,16 +348,17 @@ class BookingsController extends AppController {
         }
 
         // debug($data['Booking']['Package']['date_going']);
-            
+
         $data['Booking']['id'] = $jurnal['id_trans'];
         $data['Booking']['cashflow_id'] = $jurnal['umrahCashflow'];
+        $data['Booking']['backcashflow_id'] = 0;
         $data['Booking']['type_currency'] = $jurnal['umrahTipekurs'];
         $data['Booking']['kurs'] = $jurnal['umrahKurs'];
         $data['Booking']['amount'] = $jurnal['umrahAmount'];
         $data['Booking']['desc_payment'] = $jurnal['umrahDescpayment'];
         $data['Booking']['type_trans'] = $jurnal['umrahTypetrans'];
         $data['Booking']['date_trans'] = $jurnal['umrahDatetrans'];
-        
+
         $this->Jurnal->addDataJurnal($data);
         $msg = array("username" => "Test User", "success" => true);
         $data = ClassRegistry::init('Jurnal')->find('all', array(
@@ -283,7 +369,36 @@ class BookingsController extends AppController {
         die();
     }
 
-   
+
+    public function addJurnalHandling($id = null) {
+        $jurnal = $_GET;
+        if (isset($jurnal['id_jurnal'])) {
+            $data['Booking']['jurnal_id'] = $jurnal['id_jurnal'];
+        }
+
+        // debug($data['Booking']['Package']['date_going']);
+
+        $data['Booking']['id'] = $jurnal['id_trans'];
+        $data['Booking']['cashflow_id'] = $jurnal['umrahCashflow'];
+        $data['Booking']['backcashflow_id'] = 0;
+        $data['Booking']['type_currency'] = $jurnal['umrahTipekurs'];
+        $data['Booking']['kurs'] = $jurnal['umrahKurs'];
+        $data['Booking']['amount'] = $jurnal['umrahAmount'];
+        $data['Booking']['desc_payment'] = $jurnal['umrahDescpayment'];
+        $data['Booking']['type_trans'] = $jurnal['umrahTypetrans'];
+        $data['Booking']['date_trans'] = $jurnal['umrahDatetrans'];
+
+        $this->Jurnal->addDataJurnal($data);
+        $msg = array("username" => "Test User", "success" => true);
+        $data = ClassRegistry::init('Jurnal')->find('all', array(
+            'conditions' => array('Jurnal.booking_id' => $data['Booking']['id'], 'Jurnal.type_trans' => 4),
+            'recursive' => -1)
+        );
+        echo json_encode($data);
+        die();
+    }
+
+
     public function delete($id = null) {
         $this->Booking->id = $id;
         if ($this->Booking->delete()) {

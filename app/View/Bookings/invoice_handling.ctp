@@ -61,15 +61,7 @@
 		<td width="75px">
 			&nbsp;
 		</td>
-		<td>
-			Harga Pemesanan
-		</td>
-		<td width="10px">
-			:
-		</td>
-		<td>
-			<?php  echo $this->Number->currency((($booking['Booking']['room_amount'] -$booking['Booking']['room_discount']) ),'$ ');  ?>
-		</td>
+
 
 	</tr>
 </table>
@@ -142,10 +134,7 @@
                     <?php echo  $this->Number->currency(($jumlah),'Rp. ');  ?> (<?php echo  $this->Number->currency($todollar,'$. ');  ?>) <br/> <?php echo  $this->Number->currency($jumlah2,'$. ');  ?></td>
 
             </tr>
-            <tr>
-                <td colspan="2">Sisa Pembayaran</td>
-                <td colspan="4"> <?php echo $this->Number->currency((($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']) - ($jumlah2 + $todollar)),'$. '); ?></td>
-            </tr>
+
             </tbody>
         </table>
 

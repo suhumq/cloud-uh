@@ -1,21 +1,30 @@
 <?php
-  App::uses('AppController', 'Controller'); 
+  App::uses('AppController', 'Controller');
   class DepositsController extends AppController {
 
   	public $uses = array('Package','Jurnal','Cashflow','Backcashflow');
-  	
-  	public function index() {   
+
+  	public function index() {
   		$conditions = array('type_trans' => array('Jurnal.type_trans' => 3));
+
          $this->set('jurnals', $this->Jurnal->find('all',array(
             'conditions'=>$conditions,
-            'order'=>'date_trans DESC',
+            'order' => 'Jurnal.date_trans ASC',
+            // 'group' => 'Jurnal.date_trans',
+
             'recursive'=>0
         )));
+
+         // $posts = $this->Post->find('all', array('limit' => 20, 'order' => 'Post.created DESC'));
+        // return $this->set(compact('posts'));
+// $jurnals = $this->Jurnal->find('all', array('limit' => 5, 'order' => 'Article.created DESC'));
+
+         // $this->set('booking_umrahs', $this->Booking->find('all', array( 'order' => array('date_booking asc') )));
 
 
         $this->set('cashflows', $this->Cashflow->find('list'));
         $this->set('backcashflows', $this->Backcashflow->find('list'));
-        
+
 
   		if ($this->request->is('post')) {
   			$date_going_package = 0;
@@ -26,13 +35,13 @@
 			$this->request->data['Jurnal']['kurs'] = str_replace(',', '', $kurs);
 		    $this->Jurnal->create();
 		    if ($this->Jurnal->save($this->request->data)) {
-		      $this->Session->setFlash(__('Data telah berhasil ditambahkan', null), 
-                            'default', 
+		      $this->Session->setFlash(__('Data telah berhasil ditambahkan', null),
+                            'default',
                              array('class' => 'alert alert-success'));
 		      $this->redirect(array('action' => 'index'));
 		    } else {
-		      $this->Session->setFlash(__('Data gagal ditambahkan', null), 
-                            'default', 
+		      $this->Session->setFlash(__('Data gagal ditambahkan', null),
+                            'default',
                              array('class' => 'alert alert-error'));
 		    }
 		}
@@ -42,14 +51,14 @@
 
         $this->set('cashflows', $this->Cashflow->find('list'));
         $this->set('backcashflows', $this->Backcashflow->find('list'));
-        
+
 
         $this->Jurnal->id = $id;
         $this->Jurnal->recursive = 1;
         if (!$this->Jurnal->exists()) {
             throw new NotFoundException(__('Invalid booking'));
         }
-        
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Jurnal->save($this->request->data)) {
                 $this->Session->setFlash(__('Data telah berhasil di-update', null), 'default', array('class' => 'alert alert-success'));

@@ -9,7 +9,7 @@
                      </th>
                      <td>
                         <?php echo h($booking['Customer']['name']); ?>
-                     </td>   
+                     </td>
                  </tr>
                   <tr>
                     <th>
@@ -17,28 +17,28 @@
                      </th>
                      <td>
                         <?php echo h($booking['Customer']['ktp']); ?>
-                     </td>    
-                 </tr>  
+                     </td>
+                 </tr>
                  <tr>
                     <th>
                         Alamat
                      </th>
                      <td>
                         <?php echo h($booking['Customer']['address']); ?>
-                     </td>    
-                 </tr>   
+                     </td>
+                 </tr>
                  <tr>
                     <th>
                         Tempat, Tgl Lahir
                      </th>
                      <td>
                         <?php echo h($booking['Customer']['place_birth']); ?>,<?php echo h($booking['Customer']['birthday']); ?>
-                     </td>    
-                 </tr>      
+                     </td>
+                 </tr>
             </thead>
             <tbody>
             </tbody>
-        </table> 
+        </table>
     </div>
     <div class="span4">
         <table class="table table-bordered table-striped table_vam">
@@ -49,13 +49,13 @@
                      </th>
                      <td>
                         <?php echo h($booking['Package']['name']); ?>
-                     </td>   
+                     </td>
                  </tr>
                  <tr>
                     <th>
                         Harga Pemesanan
                      </th>
-                      <td> <?php echo $this->Number->currency(($booking['Booking']['room_amount']),'$ ');  ?> 
+                      <td> <?php echo $this->Number->currency(($booking['Booking']['room_amount']),'$ ');  ?>
                            | Kamar : <?php if ($booking['Booking']['room_type'] == '1'):
                                 echo "Quad";
                                 else:
@@ -66,28 +66,28 @@
                                     endif;
                                 endif;
                             ?>
-                     </td>    
-                 </tr> 
+                     </td>
+                 </tr>
                  <tr>
                     <th>
                         Diskon Paket
                      </th>
                      <td>
                          <?php echo $this->Number->currency(($booking['Booking']['room_discount']),'$ ');  ?> -> <b> <?php echo $this->Number->currency(($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']),'$ ');  ?> </b>
-                     </td>    
-                 </tr> 
+                     </td>
+                 </tr>
                    <tr>
                     <td>
                           <?php echo $this->Html->link(__('Print Faktur'), array('controller' => 'Bookings', 'action' => 'invoice', $booking['Booking']['id'])); ?>
                      </td>
-                      <td>   
+                      <td>
                       <?php echo $this->Html->link(__('Lengkapi Formulir'), array('controller' => 'Customers', 'action' => 'edit', $booking['Customer']['id'])); ?>
-                     </td>    
-                 </tr> 
+                     </td>
+                 </tr>
             </thead>
             <tbody>
             </tbody>
-        </table> 
+        </table>
     </div>
 </div>
 
@@ -101,12 +101,12 @@
                 <select id="umrah_tipekurs" name="umrah_tipekurs" class='chzn_project'>
                     <option value="1">Rp</option>
                     <option value="2">$</option>
-                </select> 
-              
-              <input id="price_brosure" name="price_brosure" class="price_brosure" type="hidden" value=" 
+                </select>
+
+              <input id="price_brosure" name="price_brosure" class="price_brosure" type="hidden" value="
                <?php echo h($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']); ?>
                 " />
-              
+
               <input id="id_trans" name="id_trans" class="id_trans" type="hidden" value="<?php echo $this->data['Booking']['id'] ?>" />
               <input id="umrah_typetrans" name="umrah_typetrans" class="umrah_typetrans" type="hidden" value="1" />
               <input id="umrah_dategoing" name="umrah_dategoing" class="umrah_dategoing" type="hidden" value="<?php echo $booking['Package']['date_going'] ?>" />
@@ -152,22 +152,22 @@
               <?php foreach ($info_umrah as $row): ?>
                 <tr>
                     <td><?php echo $this->Time->format( 'd M Y',$row['Jurnal']['date_trans']);?>&nbsp;</td>
-                    <td><?php 
+                    <td><?php
                     if ($row['Jurnal']['type_currency'] == '1'):
                             echo "Rp";
                         else:
                             echo "$";
                         endif;
-                    
+
                     ?>&nbsp;</td>
-                    <td> <?php echo $this->Number->currency(($row['Jurnal']['kurs']),'Rp. ');  ?> 
-                    <td> <?php 
+                    <td> <?php echo $this->Number->currency(($row['Jurnal']['kurs']),'Rp. ');  ?>
+                    <td> <?php
                       if ($row['Jurnal']['type_currency'] == '1'):
-                    echo $this->Number->currency(($row['Jurnal']['amount']),'Rp. '); 
+                    echo $this->Number->currency(($row['Jurnal']['amount']),'Rp. ');
                       else:
-                        echo $this->Number->currency(($row['Jurnal']['amount']),'$. '); 
+                        echo $this->Number->currency(($row['Jurnal']['amount']),'$. ');
                     endif;
-                     ?> 
+                     ?>
                     <td> <?php echo h($row['Cashflow']['name']); ?>&nbsp;</td>
                     <td> <?php echo h($row['Jurnal']['desc_payment']); ?>&nbsp;</td>
                     <td>
@@ -182,34 +182,37 @@
                     <input id="jurnal_id" name="jurnal_id" value="<?php echo h($row['Jurnal']['id']); ?>" type="hidden" class="jurnal_id" />
                     <input id="booking_id" name="booking_id" value="<?php echo h($row['Jurnal']['booking_id']); ?>" type="hidden" class="booking_id" />
                     <input id="umrah_cashflow" name="umrah_cashflow" value="<?php echo h($row['Jurnal']['cashflow_id']); ?>" type="hidden" class="umrah_cashflow" />
-                
+
                 </tr>
-                <?php 
+                <?php
 
                     if ($row['Jurnal']['type_currency'] == '1'):
                              $jumlah += ($row['Jurnal']['amount']);
-                             $todollar += ($row['Jurnal']['amount'] / $row['Jurnal']['kurs']);
+                         if($row['Jurnal']['kurs']!=0):
+                             $todollar += ($row['Jurnal']['amount'] / $row['Jurnal']['kurs'] );
+                         endif;
+
                         else:
                              $jumlah2 += ($row['Jurnal']['amount']);
                         endif;
-                    
+
                     ?>&nbsp;
 
-                 
+
             <?php endforeach; ?>
             <tr>
                 <td colspan="3">Jumlah Pembayaran</td>
                 <td colspan="5">
 
                     <?php echo  $this->Number->currency(($jumlah),'Rp. ');  ?> (<?php echo  $this->Number->currency($todollar,'$. ');  ?>) <br/> <?php echo  $this->Number->currency($jumlah2,'$. ');  ?></td>
-                
+
             </tr>
             <tr>
                 <td colspan="3">Sisa Pembayaran</td>
                 <td colspan="5"> <?php echo $this->Number->currency((($booking['Booking']['room_amount'] - $booking['Booking']['room_discount']) - ($jumlah2 + $todollar)),'$. '); ?></td>
             </tr>
             </tbody>
-        </table> 
+        </table>
     </div>
 </div>
 
@@ -232,12 +235,94 @@
                  <div class="deletable_umrah"></div>
             </div>
         </div>
+<br/>
+<br/>
+
+<div class="row-fluid">
+    <div class="span3">
+        <?php echo $this->Form->create('Booking', array('class' => 'form_validation_ttip'));?>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <?php
+                $sizes = array('1' => 'Pending', '2' => 'Lunas');
+                echo $this->Form->input('status_trans', array('label' => 'Status Transaksi', 'options' => $sizes, 'default' => 'm'));
+                 ?>
+                <?php echo $this->Form->text('id', array('type' => 'hidden','value'=>$data['Booking']['id'])); ?>
+            </div>
+        </div>
+ <button class="btn btn-danger" type="submit">Update Status</button>
+    </div>
+
+<div class="span5" style="display:none">
+        <h3 class="heading">Persyaratan Umrah</h3>
+        <table class="table table-bordered table-striped table_vam">
+            <thead>
+                <tr>
+                    <th>Remark</th>
+                    <th>Nama Persyaratan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+               //debug($data['Requirement']);
+                foreach ($requires as $row):
+                      $checked = "";?>
+                <?php foreach($data['Requirement'] as $req):?>
+                        <?php //debug($req);
+                        if($req['name'] == $row['requirements']['name']){
+                            $checked = "true";
+                        }
+?>
+
+                    <?php endforeach;?>
+                <tr>
+                       <td><?php echo $this->Form->checkbox('id', array('name' => 'booking[requirement_ids][]','checked'=>$checked,'value' => $row['requirements']['id'])); ?></td>
+                       <td><?php echo h($row['requirements']['name']); ?>&nbsp;</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="span4" style="display:none">
+        <h3 class="heading">Perlengkapan Umrah</h3>
+        <table class="table table-bordered table-striped table_vam">
+            <thead>
+                <tr>
+                    <th>Remark</th>
+                    <th>Nama Perlengkapan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+               //debug($data['Requirement']);
+                foreach ($equips as $row):
+                      $checked = "";?>
+                <?php foreach($data['Equipment'] as $equ):?>
+                        <?php //debug($req);
+                        if($equ['name'] == $row['equipment']['name']){
+                            $checked = "true";
+                        }
+?>
+
+                    <?php endforeach;?>
+                <tr>
+                       <td><?php echo $this->Form->checkbox('id', array('name' => 'booking[equipment_ids][]','checked'=>$checked,'value' => $row['equipment']['id'])); ?></td>
+                       <td><?php echo h($row['equipment']['name']); ?>&nbsp;</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
 
  <?php
-    echo $this->Html->script('specific_page/bookings/form_umrah'); 
-?> 
+    echo $this->Html->script('specific_page/bookings/form_umrah');
+?>
 
- <script type="text/javascript">    
+ <script type="text/javascript">
         var baseUrl = "<?php echo Router::url('/', true) ?>";
 
         function formatCurrency(num) {

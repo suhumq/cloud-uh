@@ -33,7 +33,7 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            url: baseUrl +'Bookings/addJurnal',
+            url: baseUrl +'Bookings/addJurnalHandling',
             dataType: 'json',
             data: 'umrahTipekurs=' + umrah_tipekurs + '&umrahAmount=' + umrah_amount+'&umrahKurs='+umrah_kurs+'&umrahCashflow='+umrah_cashflow+'&umrahDescpayment='+umrah_descpayment+'&umrahTypetrans='+umrah_typetrans+'&umrahDatetrans='+umrah_datetrans+ '&id_trans='+id_trans,
             success: function(result) {
@@ -55,7 +55,7 @@ $(document).ready(function(){
 function displayTableUmrah(data){
             var jurnal = data;
             console.log(jurnal);
-            var html = "<table id='tableumrah' class='table table-bordered table-striped table_vam'><thead><tr><th>Tanggal</th><th>Tipe Kurs</th><th>Kurs</th><th>Amount</th><th>Cashflow</th><th>Keterangan</th><th>Aksi</th></th></thead><tbody>";
+            var html = "<table id='tableumrah' class='table table-bordered table-striped table_vam'><thead><tr><th>Tanggals</th><th>Tipe Kurs</th><th>Kurs</th><th>Amount</th><th>Cashflow</th><th>Keterangan</th><th>Aksi</th></th></thead><tbody>";
             var price_brosure = $("#price_brosure").val();
             var jumlah = 0;
             var jumlah2 = 0;
@@ -177,7 +177,6 @@ function displayTableUmrah(data){
            console.log(price_brosure);
         }
         html += "<tr><td colspan='3'>Jumlah Pembayaran</td><td colspan='5'>"+ formatCurrency(jumlah)+ " ($."+todollar.toFixed(2)+") <br/> $.  "+ (jumlah2) +"</td></tr>";
-        html += "<tr><td colspan='3'>Sisa Pembayaran</td><td colspan='5'>$. "+(parseFloat(price_brosure,2) - (todollar + jumlah2) * -1).toFixed(2)+"</td></tr>"
         html +=  "</tbody></table>";
        // html +=    "</div></div></div>";
         return html;
@@ -192,7 +191,7 @@ function editUmrah(data){
     var umrah_amount = $(row).find('input.umrah_amount').val();
     var umrah_cashflow = $(row).find('input.umrah_cashflow').val();
     var umrah_descpayment = $(row).find('input.umrah_descpayment').val();
-    var umrah_typetrans = '1';
+    var umrah_typetrans = '4';
     var jurnal_id = $(row).find('input.jurnal_id').val();
     var id_trans = $(row).find('input.booking_id').val();
     var app = "";
@@ -352,7 +351,7 @@ function editUmrah(data){
 
 
         $.ajax({
-                    url: baseUrl +'Bookings/addJurnal',
+                    url: baseUrl +'Bookings/addJurnalHandling',
                     data : id_trans,
                     dataType: 'json',
                     data: 'umrahTipekurs=' + numrah_tipekurs + '&umrahAmount=' + numrah_amount+'&umrahKurs='+numrah_kurs+'&umrahCashflow='+numrah_cashflow+'&umrahDescpayment='+numrah_descpayment+'&umrahTypetrans='+umrah_typetrans+ '&umrahDatetrans='+numrah_datetrans+ '&id_trans='+id_trans+'&id_jurnal='+jurnal_id,
@@ -387,7 +386,7 @@ function editUmrah(data){
 
     $('#deleteJurnal').click(function(){
         $.ajax({
-            url: baseUrl +'Bookings/deleteJurnal',
+            url: baseUrl +'Bookings/deleteJurnalHandling',
             data : id_trans,
             dataType: 'json',
             data: 'id_trans='+id_trans+'&id_jurnal='+jurnal_id,

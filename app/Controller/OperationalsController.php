@@ -1,17 +1,17 @@
 <?php
-  App::uses('AppController', 'Controller'); 
+  App::uses('AppController', 'Controller');
   class OperationalsController extends AppController {
 
   	public $uses = array('Package','Jurnal','Cashflow', 'Backcashflow');
-  	
-  	public function index() {   
+
+  	public function index() {
   		$conditions = array('type_trans' => array('Jurnal.type_trans' => 2) );
         $this->set('jurnals', $this->Jurnal->find('all',array(
             'conditions'=>$conditions,
             'order'=>('Jurnal.date_trans DESC'),
             'recursive'=>0
         )));
-       
+
 
         // $cond_cashflow = array('flag' => array('Cashflow.flag' => 0));
         // $this->set('cashflows', $this->Cashflow->find('list',array(
@@ -23,7 +23,7 @@
         //     'conditions'=>$cond_cashflow2,
         //     'recursive'=>0
         // )));
-        
+
         $this->set('cashflows', $this->Cashflow->find('list'));
         $this->set('backcashflows', $this->Backcashflow->find('list'));
         $this->set('packages', $this->Package->find('list'));
@@ -35,12 +35,12 @@
   			$kurs = $this->params['data']['Jurnal']['kurs'];
 
         if ($date_going_package = ''):
-        $this->request->data['Jurnal']['date_going_package'] = 0;         
+        $this->request->data['Jurnal']['date_going_package'] = 0;
         else:
-        $this->request->data['Jurnal']['date_going_package'] = $date_going_package;  
+        $this->request->data['Jurnal']['date_going_package'] = $date_going_package;
         endif;
 
-  			
+
 			  $this->request->data['Jurnal']['amount'] = str_replace(',', '', $amount);
 			  $this->request->data['Jurnal']['kurs'] = str_replace(',', '', $kurs);
 		    $this->Jurnal->create();
@@ -49,13 +49,13 @@
           $this->request->data['Jurnal']['amount'] = str_replace(',', '', $price_amount);
           $price_kurs = $this->params['data']['Jurnal']['kurs'];
           $this->request->data['Jurnal']['kurs'] = str_replace(',', '', $price_kurs);
-		      $this->Session->setFlash(__('Data telah berhasil ditambahkan', null), 
-                            'default', 
+		      $this->Session->setFlash(__('Data telah berhasil ditambahkan', null),
+                            'default',
                              array('class' => 'alert alert-success'));
 		      $this->redirect(array('action' => 'index'));
 		    } else {
-		      $this->Session->setFlash(__('Data gagal ditambahkan', null), 
-                            'default', 
+		      $this->Session->setFlash(__('Data gagal ditambahkan', null),
+                            'default',
                              array('class' => 'alert alert-error'));
 		    }
 		}
@@ -63,18 +63,19 @@
 
 
 	public function edit($id = null) {
-        $this->set('packages', $this->Package->find('list'));
-  	   
-        $this->set('cashflows', $this->Cashflow->find('list'));
-        $this->set('backcashflows', $this->Backcashflow->find('list'));
-        
+
 
         $this->Jurnal->id = $id;
         $this->Jurnal->recursive = 1;
+
+          $this->set('cashflows', $this->Cashflow->find('list'));
+        $this->set('backcashflows', $this->Backcashflow->find('list'));
+        $this->set('packages', $this->Package->find('list'));
+
         if (!$this->Jurnal->exists()) {
             throw new NotFoundException(__('Invalid booking'));
         }
-        
+
         if ($this->request->is('post') || $this->request->is('put')) {
             $price_amount = $this->params['data']['Jurnal']['amount'];
             $this->request->data['Jurnal']['amount'] = str_replace(',', '', $price_amount);

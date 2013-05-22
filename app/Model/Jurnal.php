@@ -13,6 +13,10 @@ class Jurnal extends AppModel {
             'Backcashflow' => array(
               'className'    => 'Backcashflow',
               'foreignKey'   => 'backcashflow_id' /* singular name */
+             ),
+            'Package' => array(
+              'className'    => 'Package',
+              'foreignKey'   => 'package_id' /* singular name */
              )
         );
 

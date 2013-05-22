@@ -189,6 +189,7 @@
             } );
 
             $('#dt_neracas').dataTable( {
+               "bSort": false,
               "sDom": 'T<"clear">lfrtip',
               "oTableTools": {
                 "aButtons": [
@@ -206,6 +207,7 @@
             } );
 
             $('#dt_jurnals').dataTable( {
+               "bSort": false,
               "sDom": 'T<"clear">lfrtip',
               "oTableTools": {
                 "aButtons": [
@@ -240,6 +242,7 @@
             } );
 
             $('#dt_units').dataTable( {
+               "bSort": false,
               "sDom": 'T<"clear">lfrtip',
               "oTableTools": {
                 "aButtons": [
@@ -275,6 +278,7 @@
 
 
             $('#dt_customers').dataTable( {
+
               "sDom": 'T<"clear">lfrtip',
               "oTableTools": {
                 "aButtons": [

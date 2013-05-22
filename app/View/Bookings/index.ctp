@@ -9,8 +9,9 @@
         <table class="table table-bordered table-striped table_vam" id="dt_customers">
             <thead>
                 <tr>
-                    <th>Porsi Haji</th>
+                    <th>Nota</th>
                     <th>Tgl Booking</th>
+                    <th>Porsi Haji</th>
                     <th>Nama</th>
                     <th>Telepon</th>
                     <th>Paket</th>
@@ -24,8 +25,10 @@
                 <?php
                     foreach ($booking_umrahs as $bu): ?>
                     <tr>
+                        <td><?php echo h($bu['Booking']['no_booking']);  ?></td>
+                        <td><?php echo $this->Time->format( 'd M Y',$bu['Booking']['date_booking']);?>&nbsp;</td>
                         <td>
-                             <?php 
+                             <?php
                                 if ($bu['Package']['package_type'] == '1'):
                                     echo '-';
                                 else:
@@ -33,11 +36,10 @@
                                 endif;
                             ?>
                         </td>
-                        <td><?php echo $this->Time->format( 'd M Y',$bu['Booking']['date_booking']);?>&nbsp;</td>
                         <td><?php echo h($bu['Customer']['name']);  ?>&nbsp;</td>
                         <td><?php echo h($bu['Customer']['phone']);  ?>&nbsp;</td>
                         <td><?php echo h($bu['Package']['name']);  ?>&nbsp;</td>
-                        <td><?php 
+                        <td><?php
                             if ($bu['Package']['package_type'] == '1'):
                             echo "Umrah";
                         else:
@@ -59,27 +61,29 @@
                         else:
                               echo $this->Html->link(__('Lunas'), array('action' => 'transaction_haji', $bu['Booking']['id']),array('class' => ''));
                         endif;
-                        
+
                         endif;
-                        
+                         ?>&nbsp;|
+                          <?php  echo $this->Html->link(__('Handling'), array('action' => 'transaction_handling', $bu['Booking']['id']),array('class' => ''))
+
                          ?>&nbsp;
 
                         </td>
-                         
+
                         <td>
-                            <?php 
+                            <?php
                                 if ($bu['Package']['package_type'] == '1'):
-                                    echo $this->Html->link(__('Edit'), array('action' => 'edit_umrah', $bu['Booking']['id'])); 
+                                    echo $this->Html->link(__('Edit'), array('action' => 'edit_umrah', $bu['Booking']['id']));
                                 else:
-                                    echo $this->Html->link(__('Edit'), array('action' => 'edit_haji', $bu['Booking']['id'])); 
+                                    echo $this->Html->link(__('Edit'), array('action' => 'edit_haji', $bu['Booking']['id']));
                                 endif;
                             ?>
                             <?php echo $this->Form->postLink(__('Hapus'), array('action' => 'delete', $bu['Booking']['id']), null, __('Anda yakin akan menghapus data : %s ?', $bu['Customer']['name'])); ?>
                         </td>
-                      
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>  
+        </table>
     </div>
-</div>  
+</div>

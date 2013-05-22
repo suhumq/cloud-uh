@@ -7,7 +7,7 @@
 					<div class="span7">
 						<label>Nomor Transaksi<span class="f_req">*</span></label>
 						<?php
-						echo $this->Form->text('no_booking', array('class' => 'required', 'readonly' =>'true', 'minlength' => '3', 'value' => 'BO2013' . (string)$invoice[0][0]['MAX(id)']  )); ?>
+						echo $this->Form->text('no_booking', array('class' => 'required', 'readonly' =>'true', 'minlength' => '3', 'value' => 'BO2013' . (string)$invoice[0][0]['MAX(id)'] . (string)time()  )); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -40,7 +40,7 @@
 						<label>Harga Paket + Kamar</label>
 						<div class="input-prepend input-append input-price">
 						<span class="add-on">$</span>
-						<?php echo $this->Form->text('room_amount', array('label' => 'Harga Paket + Kamar', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
+						<?php echo $this->Form->text('room_amount', array('label' => 'Harga Paket + Kamar', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?>
                			<span class="add-on coma">.00</span>
                 		</div>
 					</div>
@@ -50,7 +50,7 @@
 						<label>Diskon Paket</label>
 						<div class="input-prepend input-append input-price">
 						<span class="add-on">$</span>
-						<?php echo $this->Form->text('room_discount', array('label' => 'Diskon Paket', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?> 
+						<?php echo $this->Form->text('room_discount', array('label' => 'Diskon Paket', 'type' => 'text', 'class' => 'span12 field-price required currency', 'minlength' => '1')); ?>
                			<span class="add-on coma">.00</span>
                 		</div>
 					</div>
@@ -94,7 +94,7 @@
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>           
+        </table>
 </div>
 <div class="span4">
 		<h3 class="heading">Perlengkapan Umrah</h3>
@@ -113,7 +113,7 @@
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>           
+        </table>
 </div>
 
 </div>

@@ -11,6 +11,10 @@ class Package extends AppModel {
         'Booking' => array(
             'className' => 'Booking',
             'foreignKey' => 'package_id'
+        ),
+        'Jurnal' => array(
+            'className' => 'Jurnal',
+            'foreignKey' => 'package_id'
         )
     );
 }

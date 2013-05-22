@@ -9,12 +9,13 @@
                     $sizes = array('1' => 'Rp', '2' => '$');
                     echo $this->Form->input('type_currency', array('label' => '', 'options' => $sizes, 'class' => 'chzn_project'));
                  ?>
-                 <?php echo $this->Form->input('package_id', array('label' => '','type' => 'select', 'class' => 'chzn_sale')); ?>
+
+                <?php echo $this->Form->input('package_id', array('label' => '','type' => 'select', 'class' => 'chzn_sale','id'=>'umrah_pack')); ?>
                 <?php echo $this->Form->input('cashflow_id', array('label' => '','type' => 'select', 'class' => 'chzn_unit', 'id'=>'umrah_cashflow')); ?>
                 <?php echo $this->Form->input('backcashflow_id', array('label' => '', 'type' => 'select', 'class' => 'chzn_project','id'=>'umrah_backcashflow')); ?>
-                
+
                  <?php echo $this->Form->input('type_trans', array('label' => '','type' => 'hidden', 'value' => '2')); ?>
-                                            
+
                 <br/><div class="input-prepend input-append input-price">
                 <span class="add-on">$</span>
                  <?php echo $this->Form->text('amount', array('class' => 'span12 field-price required currency','placeholder' => 'Amount')); ?>
