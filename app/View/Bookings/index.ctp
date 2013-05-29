@@ -15,8 +15,7 @@
                     <th>Nama</th>
                     <th>Telepon</th>
                     <th>Paket</th>
-                    <th>Tipe Paket</th>
-                    <th>Nama Group</th>
+                    <th>Group</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -25,9 +24,9 @@
                 <?php
                     foreach ($booking_umrahs as $bu): ?>
                     <tr>
-                        <td><?php echo h($bu['Booking']['no_booking']);  ?></td>
-                        <td><?php echo $this->Time->format( 'd M Y',$bu['Booking']['date_booking']);?>&nbsp;</td>
-                        <td>
+                        <td width="80"><?php echo h($bu['Booking']['no_booking']);  ?></td>
+                        <td width="100"><?php echo $this->Time->format( 'd M Y',$bu['Booking']['date_booking']);?>&nbsp;</td>
+                        <td width="80">
                              <?php
                                 if ($bu['Package']['package_type'] == '1'):
                                     echo '-';
@@ -36,18 +35,12 @@
                                 endif;
                             ?>
                         </td>
-                        <td><?php echo h($bu['Customer']['name']);  ?>&nbsp;</td>
-                        <td><?php echo h($bu['Customer']['phone']);  ?>&nbsp;</td>
-                        <td><?php echo h($bu['Package']['name']);  ?>&nbsp;</td>
-                        <td><?php
-                            if ($bu['Package']['package_type'] == '1'):
-                            echo "Umrah";
-                        else:
-                            echo "Haji";
-                        endif;
-                          ?>&nbsp;</td>
-                        <td><?php echo h($bu['GroupBooking']['name']);  ?>&nbsp;</td>
-                        <td>
+                        <td width="200"><?php echo h($bu['Customer']['name']);  ?>&nbsp;</td>
+                        <td width="120"><?php echo h($bu['Customer']['phone']);  ?>&nbsp;</td>
+                        <td width="160"><?php echo h($bu['Package']['name']);  ?>&nbsp;</td>
+
+                        <td width="50"><?php echo h($bu['GroupBooking']['name']);  ?>&nbsp;</td>
+                        <td width="120">
                         <?php
                         if ($bu['Package']['package_type'] == '1'):
                         if ($bu['Booking']['status_trans'] == '1'):
@@ -70,14 +63,14 @@
 
                         </td>
 
-                        <td>
+                        <td width="80">
                             <?php
                                 if ($bu['Package']['package_type'] == '1'):
                                     echo $this->Html->link(__('Edit'), array('action' => 'edit_umrah', $bu['Booking']['id']));
                                 else:
                                     echo $this->Html->link(__('Edit'), array('action' => 'edit_haji', $bu['Booking']['id']));
                                 endif;
-                            ?>
+                            ?> |
                             <?php echo $this->Form->postLink(__('Hapus'), array('action' => 'delete', $bu['Booking']['id']), null, __('Anda yakin akan menghapus data : %s ?', $bu['Customer']['name'])); ?>
                         </td>
 

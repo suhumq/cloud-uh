@@ -8,7 +8,8 @@
   		$conditions = array('type_trans' => array('Jurnal.type_trans' => 2) );
         $this->set('jurnals', $this->Jurnal->find('all',array(
             'conditions'=>$conditions,
-            'order'=>('Jurnal.date_trans DESC'),
+            'contain' => true,
+            'order'=>('Jurnal.date_trans asc'),
             'recursive'=>0
         )));
 

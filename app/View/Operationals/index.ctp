@@ -52,6 +52,7 @@
             <thead>
                 <tr>
                     <th>Tanggal</th>
+                    <th>Tipe</th>
                     <th>Nama Operasional</th>
                     <th>K / D</th>
                     <th>Kurs</th>
@@ -64,9 +65,17 @@
                 <?php
                     foreach ($jurnals as $ju): ?>
                     <tr>
-                         <td><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
-                         <td width="240"><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
-                         <td>[<?php echo h($ju['Cashflow']['code']);   ?>] <?php echo h($ju['Cashflow']['name']);  ?>&nbsp;/ [<?php echo h($ju['Backcashflow']['code']);   ?>] <?php echo h($ju['Backcashflow']['name']);   ?></td>
+                         <td width="150"><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
+                         <td width="150"><?php
+                         if ($ju['Jurnal']['package_id'] != '0'):
+                         echo h($ju['Package']['name']);
+                         else:
+                            echo 'Non Paket';
+                            endif;
+                         ?>&nbsp;</td>
+
+                         <td width="280"><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
+                         <td width="200">[<?php echo h($ju['Cashflow']['code']);   ?>] <?php echo h($ju['Cashflow']['name']);  ?>&nbsp;/ [<?php echo h($ju['Backcashflow']['code']);   ?>] <?php echo h($ju['Backcashflow']['name']);   ?></td>
                          <td  width="40"><?php
                          if ($ju['Jurnal']['type_currency'] == '1'):
                             echo 'Rp';
@@ -74,8 +83,8 @@
                             echo '$';
                          endif;
                            ?>&nbsp;</td>
-                         <td><?php echo  $this->Number->currency(($ju['Jurnal']['kurs']),'Rp. ');  ?>&nbsp;</td>
-                         <td>
+                         <td width="120"><?php echo  $this->Number->currency(($ju['Jurnal']['kurs']),'Rp. ');  ?>&nbsp;</td>
+                         <td width="150">
                         <?php
                             if ($ju['Jurnal']['type_currency'] == '1'):
                                 echo  $this->Number->currency(($ju['Jurnal']['amount']),'Rp. ');
@@ -84,8 +93,8 @@
                             endif;
                          ?>&nbsp;
                         </td>
-                         <td  width="100">
-                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $ju['Jurnal']['id'])); ?>&nbsp;&nbsp;&nbsp;
+                         <td  width="120">
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $ju['Jurnal']['id'])); ?> |
                             <?php echo $this->Form->postLink(__('Hapus'), array('action' => 'delete', $ju['Jurnal']['id']), null, __('Anda yakin akan menghapus data : %s ?', $ju['Jurnal']['desc_payment'])); ?>
                         </td>
                     </tr>

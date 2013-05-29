@@ -90,7 +90,7 @@
         $descpaket1 = 'Pemasukan Non Paket';
         $this->set('descpaket1', $descpaket1);
       else:
-        $paket = $this->Jurnal->query("SELECT SUM(amount) FROM jurnals WHERE date_going_package = '$a_result' AND type_currency = $b_currency AND type_trans = 1;");
+        $paket = $this->Jurnal->query("SELECT SUM(amount) FROM jurnals WHERE package_id = '$a' AND type_currency = $b_currency AND type_trans = 1;");
         $this->set('paket', $paket);
         $descpaket1 = 'Pemasukan Paket';
         $this->set('descpaket1', $descpaket1);
@@ -103,7 +103,10 @@
         $descpaket = 'Operasional Non Paket';
         $this->set('descpaket', $descpaket);
       else:
-        $operasional_paket = $this->Jurnal->query("SELECT SUM(amount) FROM jurnals WHERE date_going_package = '$a_result' AND type_currency = $b_currency AND type_trans = 2;");
+        $operasional_paket = $this->Jurnal->query("SELECT SUM(amount) FROM jurnals WHERE package_id = '$a' AND type_currency = $b_currency AND type_trans = 2;");
+        // debug($operasional_paket);
+        // debug($a);
+
         $this->set('operasional_paket', $operasional_paket);
         $descpaket = 'Operasional Paket';
         $this->set('descpaket', $descpaket);

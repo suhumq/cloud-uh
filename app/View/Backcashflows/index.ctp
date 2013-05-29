@@ -2,7 +2,7 @@
     <div class="span12">
         <h3 class="heading">Data Akun Kredit</h3>
     <div align="right">
-      <?php echo $this->Html->link(__('Tambah Akun Kredit Baru', true), array('controller' => 'Cashflows', 'action' => 'add'),array('class' => 'btn btn-info'));?>
+      <?php echo $this->Html->link(__('Tambah Akun Kredit Baru', true), array('controller' => 'backcashflows', 'action' => 'add'),array('class' => 'btn btn-info'));?>
     </div>
     <br/>
         <table class="table table-bordered table-striped table_vam" id="dt_projects">

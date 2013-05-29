@@ -43,8 +43,8 @@
             <thead>
                 <tr>
                     <th>Tanggal</th>
-                    <th>Nama Operasional</th>
-                    <th>K / D</th>
+                    <th>Nama Pemasukan</th>
+                    <th>D / K</th>
                     <th>Kurs</th>
                     <th>Kurs Value</th>
                     <th>Jumlah</th>
@@ -56,10 +56,10 @@
                 <?php
                     foreach ($jurnals as $ju): ?>
                     <tr>
-                          <td><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
+                          <td width="100"><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
                           <!-- debug($jurnals[1][jurnals][date_trans]); -->
-                          <td width="240"><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
-                          <td>[<?php echo h($ju['Cashflow']['code']);   ?>] <?php echo h($ju['Cashflow']['name']);  ?>&nbsp;/ [<?php echo h($ju['Backcashflow']['code']);   ?>] <?php echo h($ju['Backcashflow']['name']);   ?></td>
+                          <td width="300"><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
+                          <td width="300">[<?php echo h($ju['Cashflow']['code']);   ?>] <?php echo h($ju['Cashflow']['name']);  ?>&nbsp;/ [<?php echo h($ju['Backcashflow']['code']);   ?>] <?php echo h($ju['Backcashflow']['name']);   ?></td>
                          <td  width="40"><?php
                          if ($ju['Jurnal']['type_currency'] == '1'):
                             echo 'Rp';

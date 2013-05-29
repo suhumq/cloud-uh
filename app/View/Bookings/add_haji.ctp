@@ -7,7 +7,7 @@
 					<div class="span7">
 						<label>Nomor Transaksi<span class="f_req">*</span></label>
 						<?php
-						echo $this->Form->text('no_booking', array('class' => 'required', 'readonly' =>'true', 'minlength' => '3', 'value' => 'BO2013' . (string)$invoice[0][0]['MAX(id)']. (string)time() )); ?>
+						echo $this->Form->text('no_booking', array('class' => 'required', 'readonly' =>'true', 'minlength' => '3', 'value' => (string)$invoice[0][0]['MAX(id)']. (string)time() )); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
