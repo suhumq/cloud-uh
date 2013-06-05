@@ -51,6 +51,7 @@
         <table class="table table-bordered table-striped table_vam" id="dt_units">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Tanggal</th>
                     <th>Tipe</th>
                     <th>Nama Operasional</th>
@@ -65,6 +66,7 @@
                 <?php
                     foreach ($jurnals as $ju): ?>
                     <tr>
+                         <td width="10"><?php echo h($ju['Jurnal']['id']);  ?>&nbsp;</td>
                          <td width="150"><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
                          <td width="150"><?php
                          if ($ju['Jurnal']['package_id'] != '0'):

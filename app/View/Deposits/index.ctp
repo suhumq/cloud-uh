@@ -42,6 +42,7 @@
         <table class="table table-bordered table-striped table_vam" id="dt_units">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Tanggal</th>
                     <th>Nama Pemasukan</th>
                     <th>D / K</th>
@@ -56,6 +57,7 @@
                 <?php
                     foreach ($jurnals as $ju): ?>
                     <tr>
+                          <td width="10"><?php echo h($ju['Jurnal']['id']);  ?>&nbsp;</td>
                           <td width="100"><?php echo $this->Time->format( 'd M Y',$ju['Jurnal']['date_trans']);?>&nbsp;</td>
                           <!-- debug($jurnals[1][jurnals][date_trans]); -->
                           <td width="300"><?php echo h($ju['Jurnal']['desc_payment']);  ?>&nbsp;</td>
