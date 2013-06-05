@@ -351,7 +351,6 @@
                     <nav>
                         <div class="nav-collapse">
                             <ul class="nav">
-                                <?php if ($this->Session->read('Auth.User.role')  != '3' ): ?>
                                  <li class="dropdown">
                                   <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white">
                                     </i> Master <b class="caret"></b></a>
@@ -364,8 +363,8 @@
                                          <li><?php echo $this->Html->link(__('Data Akun Kredit', true), array('controller' => 'Backcashflows', 'action' => 'index'));?></li>
                                     </ul>
                                 </li>
-                                <?php endif; ?>
 
+                                <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-download icon-white"></i>Transaksi <b class="caret"></b></a>
                                    <ul class="dropdown-menu">
@@ -380,6 +379,16 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <?php else: ?>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-download icon-white"></i>Transaksi <b class="caret"></b></a>
+                                   <ul class="dropdown-menu">
+                                        <li>
+                                            <?php echo $this->Html->link(__('Paket', true), array('controller' => 'Bookings', 'action' => 'index'));?>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <?php endif; ?>
                                 <?php if ($this->Session->read('Auth.User.role')  == '1'): ?>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-print icon-white"></i> Laporan <b class="caret"></b></a>
